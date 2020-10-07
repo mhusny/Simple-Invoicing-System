@@ -466,6 +466,7 @@ namespace AnyStore.UI
                 for (int i = 0; i < dgvAddedProducts.Rows.Count - 1; i++)
                 {
                     Total = Total + (decimal.Parse(dgvAddedProducts.Rows[i].Cells["Quantity"].Value.ToString()) * decimal.Parse(dgvAddedProducts.Rows[i].Cells["Rate"].Value.ToString()));
+                    dgvAddedProducts.Rows[i].Cells["Total"].Value = decimal.Parse(dgvAddedProducts.Rows[i].Cells["Quantity"].Value.ToString()) * decimal.Parse(dgvAddedProducts.Rows[i].Cells["Rate"].Value.ToString());
                 }
 
                 //Display the Subtotal in textbox
