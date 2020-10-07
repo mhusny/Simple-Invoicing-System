@@ -38,13 +38,11 @@
             this.lblBillDate = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblDeaCustTitle = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.TxtQty = new System.Windows.Forms.TextBox();
             this.txtSearchProduct = new System.Windows.Forms.TextBox();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.lblProductSearch = new System.Windows.Forms.Label();
-            this.lblProductTitle = new System.Windows.Forms.Label();
             this.pnldataGRidView = new System.Windows.Forms.Panel();
             this.dgvAddedProducts = new System.Windows.Forms.DataGridView();
             this.lblDGVTtitle = new System.Windows.Forms.Label();
@@ -66,7 +64,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.pnlDeaCust.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.pnldataGRidView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddedProducts)).BeginInit();
             this.pnlCalculation.SuspendLayout();
@@ -80,13 +77,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1230, 33);
+            this.panel1.Size = new System.Drawing.Size(974, 33);
             this.panel1.TabIndex = 2;
             // 
             // pictureBoxClose
             // 
             this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(1196, 3);
+            this.pictureBoxClose.Location = new System.Drawing.Point(937, 3);
             this.pictureBoxClose.Name = "pictureBoxClose";
             this.pictureBoxClose.Size = new System.Drawing.Size(31, 30);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -106,14 +103,21 @@
             // 
             // pnlDeaCust
             // 
+            this.pnlDeaCust.Controls.Add(this.pnldataGRidView);
+            this.pnlDeaCust.Controls.Add(this.pnlCalculation);
+            this.pnlDeaCust.Controls.Add(this.btnAdd);
             this.pnlDeaCust.Controls.Add(this.cmbCustomer);
+            this.pnlDeaCust.Controls.Add(this.TxtQty);
             this.pnlDeaCust.Controls.Add(this.dtpBillDate);
+            this.pnlDeaCust.Controls.Add(this.txtSearchProduct);
             this.pnlDeaCust.Controls.Add(this.lblBillDate);
+            this.pnlDeaCust.Controls.Add(this.lblQuantity);
             this.pnlDeaCust.Controls.Add(this.lblName);
+            this.pnlDeaCust.Controls.Add(this.lblProductSearch);
             this.pnlDeaCust.Controls.Add(this.lblDeaCustTitle);
             this.pnlDeaCust.Location = new System.Drawing.Point(13, 40);
             this.pnlDeaCust.Name = "pnlDeaCust";
-            this.pnlDeaCust.Size = new System.Drawing.Size(1205, 100);
+            this.pnlDeaCust.Size = new System.Drawing.Size(955, 467);
             this.pnlDeaCust.TabIndex = 3;
             // 
             // cmbCustomer
@@ -162,45 +166,34 @@
             this.lblDeaCustTitle.TabIndex = 0;
             this.lblDeaCustTitle.Text = "Dealer and Customer Details";
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnAdd);
-            this.panel2.Controls.Add(this.TxtQty);
-            this.panel2.Controls.Add(this.txtSearchProduct);
-            this.panel2.Controls.Add(this.lblQuantity);
-            this.panel2.Controls.Add(this.lblProductSearch);
-            this.panel2.Controls.Add(this.lblProductTitle);
-            this.panel2.Location = new System.Drawing.Point(13, 158);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1205, 66);
-            this.panel2.TabIndex = 4;
-            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.SpringGreen;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(404, 18);
+            this.btnAdd.Location = new System.Drawing.Point(270, 59);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(103, 36);
             this.btnAdd.TabIndex = 12;
             this.btnAdd.Text = "ADD";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Visible = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // TxtQty
             // 
             this.TxtQty.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtQty.Location = new System.Drawing.Point(253, 26);
+            this.TxtQty.Location = new System.Drawing.Point(245, 32);
             this.TxtQty.Name = "TxtQty";
             this.TxtQty.Size = new System.Drawing.Size(145, 25);
             this.TxtQty.TabIndex = 10;
+            this.TxtQty.Visible = false;
             this.TxtQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQty_KeyDown);
             // 
             // txtSearchProduct
             // 
             this.txtSearchProduct.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchProduct.Location = new System.Drawing.Point(61, 26);
+            this.txtSearchProduct.Location = new System.Drawing.Point(65, 88);
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.Size = new System.Drawing.Size(145, 25);
             this.txtSearchProduct.TabIndex = 7;
@@ -211,48 +204,40 @@
             // 
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuantity.Location = new System.Drawing.Point(216, 26);
+            this.lblQuantity.Location = new System.Drawing.Point(293, 12);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(31, 17);
             this.lblQuantity.TabIndex = 3;
             this.lblQuantity.Text = "Qty.";
+            this.lblQuantity.Visible = false;
             // 
             // lblProductSearch
             // 
             this.lblProductSearch.AutoSize = true;
             this.lblProductSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductSearch.Location = new System.Drawing.Point(7, 26);
+            this.lblProductSearch.Location = new System.Drawing.Point(3, 88);
             this.lblProductSearch.Name = "lblProductSearch";
             this.lblProductSearch.Size = new System.Drawing.Size(39, 17);
             this.lblProductSearch.TabIndex = 1;
             this.lblProductSearch.Text = "Code";
             // 
-            // lblProductTitle
-            // 
-            this.lblProductTitle.AutoSize = true;
-            this.lblProductTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductTitle.Location = new System.Drawing.Point(4, 0);
-            this.lblProductTitle.Name = "lblProductTitle";
-            this.lblProductTitle.Size = new System.Drawing.Size(103, 17);
-            this.lblProductTitle.TabIndex = 0;
-            this.lblProductTitle.Text = "Product Details";
-            // 
             // pnldataGRidView
             // 
             this.pnldataGRidView.Controls.Add(this.dgvAddedProducts);
             this.pnldataGRidView.Controls.Add(this.lblDGVTtitle);
-            this.pnldataGRidView.Location = new System.Drawing.Point(13, 244);
+            this.pnldataGRidView.Location = new System.Drawing.Point(396, 4);
             this.pnldataGRidView.Name = "pnldataGRidView";
-            this.pnldataGRidView.Size = new System.Drawing.Size(816, 331);
+            this.pnldataGRidView.Size = new System.Drawing.Size(552, 446);
             this.pnldataGRidView.TabIndex = 5;
             // 
             // dgvAddedProducts
             // 
+            this.dgvAddedProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAddedProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAddedProducts.Location = new System.Drawing.Point(7, 35);
             this.dgvAddedProducts.MultiSelect = false;
             this.dgvAddedProducts.Name = "dgvAddedProducts";
-            this.dgvAddedProducts.Size = new System.Drawing.Size(793, 282);
+            this.dgvAddedProducts.Size = new System.Drawing.Size(533, 397);
             this.dgvAddedProducts.TabIndex = 1;
             this.dgvAddedProducts.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvAddedProducts_RowsRemoved);
             // 
@@ -282,7 +267,7 @@
             this.pnlCalculation.Controls.Add(this.lblDiscount);
             this.pnlCalculation.Controls.Add(this.lblSubTotal);
             this.pnlCalculation.Controls.Add(this.lblcalculationTitle);
-            this.pnlCalculation.Location = new System.Drawing.Point(835, 244);
+            this.pnlCalculation.Location = new System.Drawing.Point(7, 119);
             this.pnlCalculation.Name = "pnlCalculation";
             this.pnlCalculation.Size = new System.Drawing.Size(383, 331);
             this.pnlCalculation.TabIndex = 6;
@@ -431,14 +416,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ClientSize = new System.Drawing.Size(1230, 587);
-            this.Controls.Add(this.pnlCalculation);
-            this.Controls.Add(this.pnldataGRidView);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(974, 511);
             this.Controls.Add(this.pnlDeaCust);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Code = "frmPurchaseAndSales";
+            this.Name = "frmPurchaseAndSales";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase and Sales";
             this.Load += new System.EventHandler(this.frmPurchaseAndSales_Load);
@@ -447,8 +429,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.pnlDeaCust.ResumeLayout(false);
             this.pnlDeaCust.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.pnldataGRidView.ResumeLayout(false);
             this.pnldataGRidView.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddedProducts)).EndInit();
@@ -468,13 +448,11 @@
         private System.Windows.Forms.Label lblBillDate;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblDeaCustTitle;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox TxtQty;
         private System.Windows.Forms.TextBox txtSearchProduct;
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Label lblProductSearch;
-        private System.Windows.Forms.Label lblProductTitle;
         private System.Windows.Forms.Panel pnldataGRidView;
         private System.Windows.Forms.DataGridView dgvAddedProducts;
         private System.Windows.Forms.Label lblDGVTtitle;
