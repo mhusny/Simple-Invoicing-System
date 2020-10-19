@@ -479,5 +479,18 @@ namespace AnyStore.UI
 
             txtSearchProduct.Focus();
         }
+
+        private void dgvAddedProducts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvAddedProducts.Columns[e.ColumnIndex].Name == "Quantity")
+            { 
+                var Rate = decimal.Parse(dgvAddedProducts.Rows[e.RowIndex].Cells["Rate"].Value.ToString());
+                var Quantiy = decimal.Parse(dgvAddedProducts.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
+                dgvAddedProducts.Rows[e.RowIndex].Cells["Total"].Value = Rate * Quantiy;
+
+                CalcTot();
+            }
+
+        }
     }
 }
