@@ -9,6 +9,7 @@ namespace AnyStore.BLL
     class transactionDetailBLL
     {
         public int id { get; set; }
+        public int transastion_id { get; set; }
         public int product_id { get; set; }
         public decimal rate { get; set; }
         public decimal qty { get; set; }

@@ -240,6 +240,7 @@ namespace AnyStore.UI
             //Lets get name of the dealer or customer first
             string deaCustName = cmbCustomer.Text;
             DeaCustBLL dc = dcDAL.GetDeaCustIDFromName(deaCustName);
+            int lastTrID = tDAL.GetLastTransactionID();
 
             transaction.dea_cust_id = dc.id;
             transaction.grandTotal = Math.Round(decimal.Parse(txtGrandTotal.Text),2);
@@ -273,10 +274,11 @@ namespace AnyStore.UI
                     string ProductName = transactionDT.Rows[i][0].ToString();
                     productsBLL p = pDAL.GetProductIDFromName(ProductName);
 
+                    transactionDetail.transastion_id = transactionID;
                     transactionDetail.product_id = p.id;
-                    transactionDetail.rate = decimal.Parse(transactionDT.Rows[i][1].ToString());
-                    transactionDetail.qty = decimal.Parse(transactionDT.Rows[i][2].ToString());
-                    transactionDetail.total = Math.Round(decimal.Parse(transactionDT.Rows[i][3].ToString()),2);
+                    transactionDetail.rate = decimal.Parse(transactionDT.Rows[i][2].ToString());
+                    transactionDetail.qty = decimal.Parse(transactionDT.Rows[i][3].ToString());
+                    transactionDetail.total = Math.Round(decimal.Parse(transactionDT.Rows[i][4].ToString()),2);
                     transactionDetail.dea_cust_id = dc.id;
                     transactionDetail.added_date = DateTime.Now;
                     transactionDetail.added_by = u.id;

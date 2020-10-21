@@ -61,6 +61,8 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblProductSearch = new System.Windows.Forms.Label();
             this.lblDeaCustTitle = new System.Windows.Forms.Label();
+            this.txtInvoiceNo = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.pnlDeaCust.SuspendLayout();
@@ -103,15 +105,14 @@
             // 
             // pnlDeaCust
             // 
+            this.pnlDeaCust.Controls.Add(this.txtInvoiceNo);
+            this.pnlDeaCust.Controls.Add(this.label1);
             this.pnlDeaCust.Controls.Add(this.pnldataGRidView);
             this.pnlDeaCust.Controls.Add(this.pnlCalculation);
-            this.pnlDeaCust.Controls.Add(this.btnAdd);
             this.pnlDeaCust.Controls.Add(this.cmbCustomer);
-            this.pnlDeaCust.Controls.Add(this.TxtQty);
             this.pnlDeaCust.Controls.Add(this.dtpBillDate);
             this.pnlDeaCust.Controls.Add(this.txtSearchProduct);
             this.pnlDeaCust.Controls.Add(this.lblBillDate);
-            this.pnlDeaCust.Controls.Add(this.lblQuantity);
             this.pnlDeaCust.Controls.Add(this.lblName);
             this.pnlDeaCust.Controls.Add(this.lblProductSearch);
             this.pnlDeaCust.Controls.Add(this.lblDeaCustTitle);
@@ -124,6 +125,9 @@
             // 
             this.pnldataGRidView.Controls.Add(this.dgvAddedProducts);
             this.pnldataGRidView.Controls.Add(this.lblDGVTtitle);
+            this.pnldataGRidView.Controls.Add(this.btnAdd);
+            this.pnldataGRidView.Controls.Add(this.lblQuantity);
+            this.pnldataGRidView.Controls.Add(this.TxtQty);
             this.pnldataGRidView.Location = new System.Drawing.Point(396, 4);
             this.pnldataGRidView.Name = "pnldataGRidView";
             this.pnldataGRidView.Size = new System.Drawing.Size(552, 446);
@@ -316,7 +320,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.SpringGreen;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(270, 59);
+            this.btnAdd.Location = new System.Drawing.Point(344, -4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(103, 36);
             this.btnAdd.TabIndex = 12;
@@ -336,7 +340,7 @@
             // TxtQty
             // 
             this.TxtQty.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtQty.Location = new System.Drawing.Point(245, 32);
+            this.TxtQty.Location = new System.Drawing.Point(288, -1);
             this.TxtQty.Name = "TxtQty";
             this.TxtQty.Size = new System.Drawing.Size(145, 25);
             this.TxtQty.TabIndex = 10;
@@ -375,7 +379,7 @@
             // 
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuantity.Location = new System.Drawing.Point(293, 12);
+            this.lblQuantity.Location = new System.Drawing.Point(285, 7);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(31, 17);
             this.lblQuantity.TabIndex = 3;
@@ -411,6 +415,24 @@
             this.lblDeaCustTitle.Size = new System.Drawing.Size(185, 17);
             this.lblDeaCustTitle.TabIndex = 0;
             this.lblDeaCustTitle.Text = "Dealer and Customer Details";
+            // 
+            // txtInvoiceNo
+            // 
+            this.txtInvoiceNo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInvoiceNo.Location = new System.Drawing.Point(224, 88);
+            this.txtInvoiceNo.Name = "txtInvoiceNo";
+            this.txtInvoiceNo.Size = new System.Drawing.Size(153, 25);
+            this.txtInvoiceNo.TabIndex = 15;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(224, 68);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 17);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Invoice No.";
             // 
             // frmPurchaseAndSales
             // 
@@ -473,5 +495,7 @@
         private System.Windows.Forms.Label lblSubTotal;
         private System.Windows.Forms.Label lblcalculationTitle;
         private System.Windows.Forms.ComboBox cmbCustomer;
+        private System.Windows.Forms.TextBox txtInvoiceNo;
+        private System.Windows.Forms.Label label1;
     }
 }
