@@ -240,7 +240,6 @@ namespace AnyStore.UI
             //Lets get name of the dealer or customer first
             string deaCustName = cmbCustomer.Text;
             DeaCustBLL dc = dcDAL.GetDeaCustIDFromName(deaCustName);
-            int lastTrID = tDAL.GetLastTransactionID();
 
             transaction.dea_cust_id = dc.id;
             transaction.grandTotal = Math.Round(decimal.Parse(txtGrandTotal.Text),2);
@@ -327,8 +326,9 @@ namespace AnyStore.UI
                     //Celar the Data Grid View and Clear all the TExtboxes
                     dgvAddedProducts.DataSource = null;
                     dgvAddedProducts.Rows.Clear();
+                    transactionDT.Rows.Clear();
 
-                    
+
                     txtSearchProduct.Text = "";
                     
                     TxtQty.Text = "0";
@@ -338,6 +338,7 @@ namespace AnyStore.UI
                     txtGrandTotal.Text = "0";
                     txtPaidAmount.Text = "0";
                     txtReturnAmount.Text = "0";
+
                 }
                 else
                 {

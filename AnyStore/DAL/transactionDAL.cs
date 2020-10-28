@@ -16,47 +16,6 @@ namespace AnyStore.DAL
         //Create a connection string variable
         static string myconnstrng = ConfigurationManager.ConnectionStrings["connstrng"].ConnectionString;
 
-        #region METHOD TO GET THE LAST TRANSACTION ID
-        public int GetLastTransactionID()
-        {
-            //First Create an Object of DeaCust BLL and REturn it
-            //transactionsBLL dc = new transactionsBLL();
-            int id = 0;
-
-            //SQL Conection here
-            SqlConnection conn = new SqlConnection(myconnstrng);
-            //Data TAble to Holdthe data temporarily
-            DataTable dt = new DataTable();
-            
-            try
-            {
-                //SQL Query to Get id based on Name
-                string sql = "SELECT MAX(id) FROM tbl_transactions";
-                //Create the SQL Data Adapter to Execute the Query
-                SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
-
-                conn.Open();
-
-                //Passing the CAlue from Adapter to DAtatable
-                adapter.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-                    //Pass the value from dt to DeaCustBLL dc
-                    id = int.Parse(dt.Rows[0][0].ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-            return id;
-        }
-        #endregion
 
         #region Insert Transaction Method
         public bool Insert_Transaction(transactionsBLL t, out int transactionID)
