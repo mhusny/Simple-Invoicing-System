@@ -13,6 +13,7 @@ namespace AnyStore.BLL
         public int product_id { get; set; }
         public decimal rate { get; set; }
         public decimal qty { get; set; }
+        public decimal discount { get; set; }
         public decimal total { get; set; }
         public int dea_cust_id { get; set; }
         public DateTime added_date { get; set; }

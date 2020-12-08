@@ -354,7 +354,7 @@ namespace AnyStore.DAL
             try
             {
                 //SQL Query to Get id based on Name
-                string sql = "SELECT id FROM tbl_dea_cust WHERE name='"+Name+"'";
+                string sql = "SELECT id, type FROM tbl_dea_cust WHERE name='" + Name+"'";
                 //Create the SQL Data Adapter to Execute the Query
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
 
@@ -366,6 +366,7 @@ namespace AnyStore.DAL
                 {
                     //Pass the value from dt to DeaCustBLL dc
                     dc.id = int.Parse(dt.Rows[0]["id"].ToString());
+                    dc.type = dt.Rows[0]["type"].ToString();
                 }
             }
             catch(Exception ex)

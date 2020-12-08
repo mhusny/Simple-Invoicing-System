@@ -21,6 +21,7 @@ namespace AnyStore.UI
         public string Description;
         public decimal Rate;
         public decimal Qty;
+        public decimal Discount;
 
         public frmPurchaseAndSales()
         {
@@ -50,6 +51,7 @@ namespace AnyStore.UI
             transactionDT.Columns.Add("Product Name");
             transactionDT.Columns.Add("Rate");
             transactionDT.Columns.Add("Quantity");
+            transactionDT.Columns.Add("Discount");
             transactionDT.Columns.Add("Total");
 
             //Get the keyword fro the text box
@@ -277,7 +279,8 @@ namespace AnyStore.UI
                     transactionDetail.product_id = p.id;
                     transactionDetail.rate = decimal.Parse(transactionDT.Rows[i][2].ToString());
                     transactionDetail.qty = decimal.Parse(transactionDT.Rows[i][3].ToString());
-                    transactionDetail.total = Math.Round(decimal.Parse(transactionDT.Rows[i][4].ToString()),2);
+                    transactionDetail.discount = decimal.Parse(transactionDT.Rows[i][4].ToString());
+                    transactionDetail.total = Math.Round(decimal.Parse(transactionDT.Rows[i][5].ToString()),2);
                     transactionDetail.dea_cust_id = dc.id;
                     transactionDetail.added_date = DateTime.Now;
                     transactionDetail.added_by = u.id;
@@ -371,6 +374,7 @@ namespace AnyStore.UI
                     Description = p[0].description.ToString();
                     Rate = decimal.Parse(p[0].rate.ToString());
                     Qty = decimal.Parse(TxtQty.Text);
+                    
 
                     decimal Total = Rate * Qty; //Total=RatexQty
                     int added = -1;
@@ -388,7 +392,7 @@ namespace AnyStore.UI
                     else
                     {
                         //Add product to the dAta Grid View
-                        transactionDT.Rows.Add(Code, Description, Rate, Qty, Total);
+                        transactionDT.Rows.Add(Code, Description, Rate, Qty, Discount, Total);
                         //Show in DAta Grid View
                         dgvAddedProducts.DataSource = transactionDT;
                     }
@@ -468,8 +472,8 @@ namespace AnyStore.UI
                 decimal Total = 0;
                 for (int i = 0; i < dgvAddedProducts.Rows.Count - 1; i++)
                 {
-                    Total = Total + (decimal.Parse(dgvAddedProducts.Rows[i].Cells["Quantity"].Value.ToString()) * decimal.Parse(dgvAddedProducts.Rows[i].Cells["Rate"].Value.ToString()));
-                    dgvAddedProducts.Rows[i].Cells["Total"].Value = decimal.Parse(dgvAddedProducts.Rows[i].Cells["Quantity"].Value.ToString()) * decimal.Parse(dgvAddedProducts.Rows[i].Cells["Rate"].Value.ToString());
+                    Total = Total + (decimal.Parse(dgvAddedProducts.Rows[i].Cells["Quantity"].Value.ToString()) * decimal.Parse(dgvAddedProducts.Rows[i].Cells["Rate"].Value.ToString()) * (1 - decimal.Parse(dgvAddedProducts.Rows[i].Cells["Discount"].Value.ToString()) / 100));
+                    dgvAddedProducts.Rows[i].Cells["Total"].Value = decimal.Parse(dgvAddedProducts.Rows[i].Cells["Quantity"].Value.ToString()) * decimal.Parse(dgvAddedProducts.Rows[i].Cells["Rate"].Value.ToString()) * (1 - decimal.Parse(dgvAddedProducts.Rows[i].Cells["Discount"].Value.ToString()) / 100);
                 }
 
                 //Display the Subtotal in textbox
@@ -493,7 +497,28 @@ namespace AnyStore.UI
 
                 CalcTot();
             }
+        }
 
+        private void cmbCustomer_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string deaCustName = cmbCustomer.Text;
+            DeaCustBLL dc = dcDAL.GetDeaCustIDFromName(deaCustName);
+
+
+            if (dc.type != null)
+
+            Discount = decimal.Parse(dc.type);
+
+            {
+                if (dgvAddedProducts.Rows.Count>0)
+                {
+                    for (int i = 0; i < dgvAddedProducts.Rows.Count - 1; i++)
+                    {
+                        dgvAddedProducts.Rows[i].Cells["Discount"].Value = dc.type;
+                    }
+                    CalcTot();
+                }
+            }
         }
     }
 }
