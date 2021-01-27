@@ -29,12 +29,13 @@ namespace AnyStore.DAL
             try
             {
                 //SQL Query to Insert Transactions
-                string sql = "INSERT INTO tbl_transactions (type, dea_cust_id, grandTotal, transaction_date, tax, discount, added_by) VALUES (@type, @dea_cust_id, @grandTotal, @transaction_date, @tax, @discount, @added_by); SELECT @@IDENTITY;";
+                string sql = "INSERT INTO tbl_transactions (invoice_no, type, dea_cust_id, grandTotal, transaction_date, tax, discount, added_by) VALUES (@invoice_no, @type, @dea_cust_id, @grandTotal, @transaction_date, @tax, @discount, @added_by); SELECT @@IDENTITY;";
 
                 //Sql Commandto pass the value in sql query
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
                 //Passing the value to sql query using cmd
+                cmd.Parameters.AddWithValue("@invoice_no", t.invoice_no);
                 cmd.Parameters.AddWithValue("@type", t.type);
                 cmd.Parameters.AddWithValue("@dea_cust_id", t.dea_cust_id);
                 cmd.Parameters.AddWithValue("@grandTotal", t.grandTotal);
@@ -75,6 +76,7 @@ namespace AnyStore.DAL
             return isSuccess;
         }
         #endregion
+
         #region METHOD TO DISPLAY ALL THE TRANSACTION
         public DataTable DisplayAllTransactions()
         {
@@ -112,6 +114,7 @@ namespace AnyStore.DAL
             return dt;
         }
         #endregion
+
         #region METHOD TO DISPLAY TRANSACTION BASED ON TRANSACTION TYPE
         public DataTable DisplayTransactionByType(string type)
         {
@@ -145,6 +148,42 @@ namespace AnyStore.DAL
             }
 
             return dt;
+        }
+        #endregion
+
+        #region METHOD TO GET NEXT INVOICE NO
+        public String GetNextInvoiceNo()
+        {
+            //Create SQL Connection
+            SqlConnection conn = new SqlConnection(myconnstrng);
+
+            //Create a DataTable
+            DataTable dt = new DataTable();
+
+            try
+            {
+                //Write SQL Query
+                string sql = "SELECT * FROM tbl_Parameter";
+
+                //SQL Command to Execute Query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                //SQlDataAdapter to hold the data from database
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                //Open DAtabase Connection
+                conn.Open();
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dt.Rows[0][0] + 1.ToString();
         }
         #endregion
     }

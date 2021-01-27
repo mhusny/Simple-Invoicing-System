@@ -126,8 +126,9 @@
             this.txtInvoiceNo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInvoiceNo.Location = new System.Drawing.Point(224, 88);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
-            this.txtInvoiceNo.Size = new System.Drawing.Size(153, 25);
+            this.txtInvoiceNo.Size = new System.Drawing.Size(140, 25);
             this.txtInvoiceNo.TabIndex = 15;
+            this.txtInvoiceNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label1
             // 

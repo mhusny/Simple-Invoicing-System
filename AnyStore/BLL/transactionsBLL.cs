@@ -10,6 +10,7 @@ namespace AnyStore.BLL
     class transactionsBLL
     {
         public int id { get; set; }
+        public decimal invoice_no { get; set; }
         public string type { get; set; }
         public int dea_cust_id { get; set; }
         public decimal grandTotal { get; set; }

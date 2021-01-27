@@ -27,7 +27,7 @@ namespace AnyStore.DAL
             try
             {
                 //Sql Query to Insert Transaction detais
-                string sql = "INSERT INTO tbl_transaction_detail (product_id, transaction_id, rate, qty, discount, total, dea_cust_id, added_date, added_by) VALUES (@product_id, @transaction_id, @rate, @qty, @total, @dea_cust_id, @added_date, @added_by)";
+                string sql = "INSERT INTO tbl_transaction_detail (product_id, transaction_id, rate, qty, discount, total, dea_cust_id, added_date, added_by) VALUES (@product_id, @transaction_id, @rate, @qty, @discount, @total, @dea_cust_id, @added_date, @added_by)";
 
                 //Passing the value to the SQL Query
                 SqlCommand cmd = new SqlCommand(sql, conn);

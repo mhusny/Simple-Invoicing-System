@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
 
-
 namespace AnyStore.UI
 {
     public partial class frmPurchaseAndSales : Form
@@ -32,6 +31,7 @@ namespace AnyStore.UI
         {
             this.Hide();
         }
+
         DeaCustDAL dcDAL = new DeaCustDAL();
         productsDAL pDAL = new productsDAL();
         userDAL uDAL = new userDAL();
@@ -39,6 +39,7 @@ namespace AnyStore.UI
         transactionDetailDAL tdDAL = new transactionDetailDAL();
 
         DataTable transactionDT = new DataTable();
+
         private void frmPurchaseAndSales_Load(object sender, EventArgs e)
         {
             //Get the transactionType value from frmUserDashboard
@@ -69,6 +70,8 @@ namespace AnyStore.UI
 
             //Write the code to get the details and set the value on text boxes
             //DeaCustBLL dc = dcDAL.GetDealerCustomerForTransaction();
+
+            txtInvoiceNo.Text = tDAL.GetNextInvoiceNo();
             DataSet ds =  dcDAL.GetDealerCustomerForTransaction();
 
             //Now transfer or set the value from DeCustBLL to textboxes
@@ -243,6 +246,7 @@ namespace AnyStore.UI
             string deaCustName = cmbCustomer.Text;
             DeaCustBLL dc = dcDAL.GetDeaCustIDFromName(deaCustName);
 
+            transaction.invoice_no = decimal.Parse(txtInvoiceNo.Text);
             transaction.dea_cust_id = dc.id;
             transaction.grandTotal = Math.Round(decimal.Parse(txtGrandTotal.Text),2);
             transaction.transaction_date = DateTime.Now;
