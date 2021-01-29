@@ -152,7 +152,7 @@ namespace AnyStore.DAL
         #endregion
 
         #region METHOD TO GET NEXT INVOICE NO
-        public String GetNextInvoiceNo()
+        public decimal GetNextInvoiceNo()
         {
             //Create SQL Connection
             SqlConnection conn = new SqlConnection(myconnstrng);
@@ -183,7 +183,58 @@ namespace AnyStore.DAL
                 conn.Close();
             }
 
-            return dt.Rows[0][0] + 1.ToString();
+            return decimal.Parse(dt.Rows[0][0].ToString()) + 1;
+        }
+        #endregion
+
+        #region METHOD TO INCREMENT INVOICE NO
+        public bool IncrementInvNo(decimal inv_no)
+        {
+            //Create a boolean value and set its default value to false
+            bool isSuccess = false;
+            //Create a SqlConnection first
+            SqlConnection conn = new SqlConnection(myconnstrng);
+            try
+            {
+                //SQL Query to Insert Transactions
+                string sql = "DELETE FROM tbl_Parameter INSERT INTO tbl_Parameter ([Last Invoice No]) VALUES (@last_invoice_no)";
+
+                //Sql Commandto pass the value in sql query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                //Passing the value to sql query using cmd
+                cmd.Parameters.AddWithValue("@last_invoice_no", inv_no);
+
+                //Open Database Connection
+                conn.Open();
+
+                //Execute the Query
+                object o = cmd.ExecuteScalar();
+
+                //If the query is executed successfully then the value will not be null else it will be null
+                if (o != null)
+                {
+                    //Query Executed Successfully
+                    inv_no = int.Parse(o.ToString());
+                    isSuccess = true;
+                }
+                else
+                {
+                    //failed to execute query
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                //Close the connection 
+                conn.Close();
+            }
+
+            return isSuccess;
         }
         #endregion
     }

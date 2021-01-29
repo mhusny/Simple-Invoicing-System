@@ -71,13 +71,15 @@ namespace AnyStore.UI
             //Write the code to get the details and set the value on text boxes
             //DeaCustBLL dc = dcDAL.GetDealerCustomerForTransaction();
 
-            txtInvoiceNo.Text = tDAL.GetNextInvoiceNo();
+            txtInvoiceNo.Text = tDAL.GetNextInvoiceNo().ToString();
             DataSet ds =  dcDAL.GetDealerCustomerForTransaction();
 
             //Now transfer or set the value from DeCustBLL to textboxes
             cmbCustomer.DataSource = ds.Tables[0];
             cmbCustomer.ValueMember = "name";
             cmbCustomer.DisplayMember = "name";
+            this.ActiveControl = txtSearchProduct;
+            
         }
 
         private void txtSearchProduct_TextChanged(object sender, EventArgs e)
@@ -308,8 +310,10 @@ namespace AnyStore.UI
                     //Insert Transaction Details inside the database
                     bool y = tdDAL.InsertTransactionDetail(transactionDetail);
                     success = w && x && y;
+
+                    tDAL.IncrementInvNo(decimal.Parse(txtInvoiceNo.Text));
                 }
-                
+                // card cheque pyment
                 if (success == true)
                 {
                     //Transaction Complete
@@ -345,7 +349,7 @@ namespace AnyStore.UI
                     txtGrandTotal.Text = "0";
                     txtPaidAmount.Text = "0";
                     txtReturnAmount.Text = "0";
-
+                    txtInvoiceNo.Text = (decimal.Parse(txtInvoiceNo.Text) + 1).ToString();
                 }
                 else
                 {

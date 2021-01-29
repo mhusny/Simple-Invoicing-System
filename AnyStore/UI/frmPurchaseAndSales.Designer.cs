@@ -33,7 +33,6 @@
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.lblTop = new System.Windows.Forms.Label();
             this.pnlDeaCust = new System.Windows.Forms.Panel();
-            this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pnldataGRidView = new System.Windows.Forms.Panel();
             this.dgvAddedProducts = new System.Windows.Forms.DataGridView();
@@ -63,6 +62,7 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblProductSearch = new System.Windows.Forms.Label();
             this.lblDeaCustTitle = new System.Windows.Forms.Label();
+            this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.pnlDeaCust.SuspendLayout();
@@ -121,20 +121,11 @@
             this.pnlDeaCust.Size = new System.Drawing.Size(955, 459);
             this.pnlDeaCust.TabIndex = 3;
             // 
-            // txtInvoiceNo
-            // 
-            this.txtInvoiceNo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInvoiceNo.Location = new System.Drawing.Point(224, 88);
-            this.txtInvoiceNo.Name = "txtInvoiceNo";
-            this.txtInvoiceNo.Size = new System.Drawing.Size(140, 25);
-            this.txtInvoiceNo.TabIndex = 15;
-            this.txtInvoiceNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(224, 68);
+            this.label1.Location = new System.Drawing.Point(291, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 17);
             this.label1.TabIndex = 14;
@@ -238,7 +229,7 @@
             this.btnSave.Location = new System.Drawing.Point(52, 277);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(217, 40);
-            this.btnSave.TabIndex = 13;
+            this.btnSave.TabIndex = 14;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -251,7 +242,7 @@
             this.txtReturnAmount.Name = "txtReturnAmount";
             this.txtReturnAmount.ReadOnly = true;
             this.txtReturnAmount.Size = new System.Drawing.Size(233, 39);
-            this.txtReturnAmount.TabIndex = 12;
+            this.txtReturnAmount.TabIndex = 13;
             // 
             // txtPaidAmount
             // 
@@ -259,7 +250,7 @@
             this.txtPaidAmount.Location = new System.Drawing.Point(124, 186);
             this.txtPaidAmount.Name = "txtPaidAmount";
             this.txtPaidAmount.Size = new System.Drawing.Size(233, 25);
-            this.txtPaidAmount.TabIndex = 11;
+            this.txtPaidAmount.TabIndex = 12;
             this.txtPaidAmount.TextChanged += new System.EventHandler(this.txtPaidAmount_TextChanged);
             // 
             // txtGrandTotal
@@ -269,7 +260,7 @@
             this.txtGrandTotal.Name = "txtGrandTotal";
             this.txtGrandTotal.ReadOnly = true;
             this.txtGrandTotal.Size = new System.Drawing.Size(233, 25);
-            this.txtGrandTotal.TabIndex = 10;
+            this.txtGrandTotal.TabIndex = 11;
             // 
             // txtDiscount
             // 
@@ -286,7 +277,7 @@
             this.txtVat.Location = new System.Drawing.Point(124, 108);
             this.txtVat.Name = "txtVat";
             this.txtVat.Size = new System.Drawing.Size(233, 25);
-            this.txtVat.TabIndex = 8;
+            this.txtVat.TabIndex = 10;
             this.txtVat.TextChanged += new System.EventHandler(this.txtVat_TextChanged);
             // 
             // txtSubTotal
@@ -296,7 +287,7 @@
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.ReadOnly = true;
             this.txtSubTotal.Size = new System.Drawing.Size(233, 25);
-            this.txtSubTotal.TabIndex = 7;
+            this.txtSubTotal.TabIndex = 8;
             this.txtSubTotal.Text = "0";
             // 
             // lblReturnAmount
@@ -436,6 +427,17 @@
             this.lblDeaCustTitle.TabIndex = 0;
             this.lblDeaCustTitle.Text = "Dealer and Customer Details";
             // 
+            // txtInvoiceNo
+            // 
+            this.txtInvoiceNo.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInvoiceNo.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtInvoiceNo.Location = new System.Drawing.Point(250, 48);
+            this.txtInvoiceNo.Name = "txtInvoiceNo";
+            this.txtInvoiceNo.ReadOnly = true;
+            this.txtInvoiceNo.Size = new System.Drawing.Size(140, 46);
+            this.txtInvoiceNo.TabIndex = 15;
+            this.txtInvoiceNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmPurchaseAndSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -497,7 +499,7 @@
         private System.Windows.Forms.Label lblSubTotal;
         private System.Windows.Forms.Label lblcalculationTitle;
         private System.Windows.Forms.ComboBox cmbCustomer;
-        private System.Windows.Forms.TextBox txtInvoiceNo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtInvoiceNo;
     }
 }
