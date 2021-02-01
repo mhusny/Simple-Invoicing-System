@@ -29,7 +29,7 @@ namespace AnyStore.DAL
             try
             {
                 //SQL Query to Insert Transactions
-                string sql = "INSERT INTO tbl_transactions (invoice_no, type, dea_cust_id, grandTotal, transaction_date, tax, discount, added_by) VALUES (@invoice_no, @type, @dea_cust_id, @grandTotal, @transaction_date, @tax, @discount, @added_by); SELECT @@IDENTITY;";
+                string sql = "INSERT INTO tbl_transactions (invoice_no, type, dea_cust_id, grandTotal, transaction_date, tax, discount, added_by, cash, card, cheque, cheque_no) VALUES (@invoice_no, @type, @dea_cust_id, @grandTotal, @transaction_date, @tax, @discount, @added_by, @cash, @card, @cheque, @cheque_no); SELECT @@IDENTITY;";
 
                 //Sql Commandto pass the value in sql query
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -43,6 +43,10 @@ namespace AnyStore.DAL
                 cmd.Parameters.AddWithValue("@tax", t.tax);
                 cmd.Parameters.AddWithValue("@discount", t.discount);
                 cmd.Parameters.AddWithValue("@added_by", t.added_by);
+                cmd.Parameters.AddWithValue("@cash", t.cash);
+                cmd.Parameters.AddWithValue("@card", t.card);
+                cmd.Parameters.AddWithValue("@cheque", t.cheque);
+                cmd.Parameters.AddWithValue("@cheque_no", t.cheque_no);
 
                 //Open Database Connection
                 conn.Open();

@@ -228,7 +228,7 @@ namespace AnyStore.UI
         {
             //Get the paid amount and grand total
             decimal grandTotal = decimal.Parse(txtGrandTotal.Text);
-            decimal paidAmount = decimal.Parse(txtPaidAmount.Text);
+            decimal paidAmount = decimal.Parse(txtCash.Text);
 
             decimal returnAmount = paidAmount - grandTotal;
 
@@ -238,6 +238,8 @@ namespace AnyStore.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //validation
+
             //Get the Values from PurchaseSales Form First
             transactionsBLL transaction = new transactionsBLL();
 
@@ -252,8 +254,12 @@ namespace AnyStore.UI
             transaction.dea_cust_id = dc.id;
             transaction.grandTotal = Math.Round(decimal.Parse(txtGrandTotal.Text),2);
             transaction.transaction_date = DateTime.Now;
-            transaction.tax = decimal.Parse(txtVat.Text);
-            transaction.discount = decimal.Parse(txtDiscount.Text);
+            transaction.tax = decimal.Parse("0" + txtVat.Text);
+            transaction.discount = decimal.Parse("0" + txtDiscount.Text);
+            transaction.cash = decimal.Parse("0" + txtCash.Text);
+            transaction.card = decimal.Parse("0" + txtCard.Text);
+            transaction.cheque = decimal.Parse("0" + txtCheque.Text);
+            transaction.cheque_no = decimal.Parse("0" + txtChequeNo.Text);
 
             //Get the Username of Logged in user
             string username = frmLogin.loggedIn;
@@ -313,7 +319,7 @@ namespace AnyStore.UI
 
                     tDAL.IncrementInvNo(decimal.Parse(txtInvoiceNo.Text));
                 }
-                // card cheque pyment
+                //update grand total
                 if (success == true)
                 {
                     //Transaction Complete
@@ -347,7 +353,10 @@ namespace AnyStore.UI
                     txtDiscount.Text = "0";
                     txtVat.Text = "0";
                     txtGrandTotal.Text = "0";
-                    txtPaidAmount.Text = "0";
+                    txtCash.Text = "0";
+                    txtCard.Text = "0";
+                    txtCheque.Text = "0";
+                    txtChequeNo.Text = "0";
                     txtReturnAmount.Text = "0";
                     txtInvoiceNo.Text = (decimal.Parse(txtInvoiceNo.Text) + 1).ToString();
                 }

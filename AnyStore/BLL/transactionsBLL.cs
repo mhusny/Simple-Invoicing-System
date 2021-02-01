@@ -18,6 +18,10 @@ namespace AnyStore.BLL
         public decimal tax { get; set; }
         public decimal discount { get; set; }
         public int added_by { get; set; }
+        public decimal cash { get; set; }
+        public decimal card { get; set; }
+        public decimal cheque { get; set; }
+        public decimal cheque_no { get; set; }
         public DataTable transactionDetails { get; set; }
 
     }
