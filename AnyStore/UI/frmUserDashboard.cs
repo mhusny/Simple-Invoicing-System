@@ -30,6 +30,15 @@ namespace AnyStore
         private void frmUserDashboard_Load(object sender, EventArgs e)
         {
             lblLoggedInUser.Text = frmLogin.loggedIn;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
+        }
+
+        private void KeyEvent(object sender, KeyEventArgs e) //Keyup Event 
+        {
+            if (e.KeyCode == Keys.F9)
+            {
+                salesFormsToolStripMenuItem_Click(sender, e);
+            }  
         }
 
         private void dealerAndCustomerToolStripMenuItem_Click(object sender, EventArgs e)

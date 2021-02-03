@@ -67,8 +67,8 @@
             // salesFormsToolStripMenuItem
             // 
             this.salesFormsToolStripMenuItem.Name = "salesFormsToolStripMenuItem";
-            this.salesFormsToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
-            this.salesFormsToolStripMenuItem.Text = "Sales";
+            this.salesFormsToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.salesFormsToolStripMenuItem.Text = "Sales (F9)";
             this.salesFormsToolStripMenuItem.Click += new System.EventHandler(this.salesFormsToolStripMenuItem_Click);
             // 
             // inventoryToolStripMenuItem
@@ -153,7 +153,7 @@
             this.lblFooter.ForeColor = System.Drawing.Color.White;
             this.lblFooter.Location = new System.Drawing.Point(586, 8);
             this.lblFooter.Name = "lblFooter";
-            this.lblFooter.Size = new System.Drawing.Size(169, 17);
+            this.lblFooter.Size = new System.Drawing.Size(167, 17);
             this.lblFooter.TabIndex = 0;
             this.lblFooter.Text = "Developed By: VIJAY THAPA";
             // 
@@ -169,6 +169,7 @@
             this.Controls.Add(this.lblLoggedInUser);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.menuStripTop);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStripTop;
             this.Name = "frmUserDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

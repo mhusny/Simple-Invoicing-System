@@ -42,6 +42,8 @@ namespace AnyStore.UI
 
         private void frmPurchaseAndSales_Load(object sender, EventArgs e)
         {
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
+
             //Get the transactionType value from frmUserDashboard
             string type = frmUserDashboard.transactionType;
             //Set the value on lblTop
@@ -80,6 +82,36 @@ namespace AnyStore.UI
             cmbCustomer.DisplayMember = "name";
             this.ActiveControl = txtSearchProduct;
             
+        }
+
+        private void KeyEvent(object sender, KeyEventArgs e) //Keyup Event 
+        {
+            if (e.KeyCode == Keys.F5)
+            {
+                txtCash.Text = txtGrandTotal.Text;
+                txtCard.Text = "";
+                txtCheque.Text = "";
+            }
+            if (e.KeyCode == Keys.F6)
+            {
+                txtCard.Text = txtGrandTotal.Text;
+                txtCheque.Text = "";
+                txtCash.Text = "";
+            }
+            if (e.KeyCode == Keys.F7)
+            {
+                txtCheque.Text = txtGrandTotal.Text;
+                txtChequeNo.Focus();
+                txtCard.Text = "";
+                txtCash.Text = "";
+            }
+            if (e.KeyCode == Keys.F9)
+            {
+                btnSave_Click(sender, e);
+            }
+            //else
+            //MessageBox.Show("No Function");
+
         }
 
         private void txtSearchProduct_TextChanged(object sender, EventArgs e)
@@ -215,8 +247,8 @@ namespace AnyStore.UI
             {
                 //Calculate VAT
                 //Getting the VAT Percent first
-                decimal previousGT = decimal.Parse(txtGrandTotal.Text);
-                decimal vat = decimal.Parse(txtVat.Text);
+                decimal previousGT = decimal.Parse("0" + txtGrandTotal.Text);
+                decimal vat = decimal.Parse("0" + txtVat.Text);
                 decimal grandTotalWithVAT=((100+vat)/100)*previousGT;
 
                 //Displaying new grand total with vat
@@ -228,7 +260,7 @@ namespace AnyStore.UI
         {
             //Get the paid amount and grand total
             decimal grandTotal = decimal.Parse(txtGrandTotal.Text);
-            decimal paidAmount = decimal.Parse(txtCash.Text);
+            decimal paidAmount = decimal.Parse("0" + txtCash.Text) + decimal.Parse("0" + txtCard.Text) + decimal.Parse("0" + txtCheque.Text);
 
             decimal returnAmount = paidAmount - grandTotal;
 
@@ -239,6 +271,12 @@ namespace AnyStore.UI
         private void btnSave_Click(object sender, EventArgs e)
         {
             //validation
+            if (decimal.Parse("0" + txtCheque.Text) > 0 && txtChequeNo.Text.Length <2 )
+            {
+                MessageBox.Show("Please enter a cheque no.");
+            }
+
+
 
             //Get the Values from PurchaseSales Form First
             transactionsBLL transaction = new transactionsBLL();
@@ -252,7 +290,7 @@ namespace AnyStore.UI
 
             transaction.invoice_no = decimal.Parse(txtInvoiceNo.Text);
             transaction.dea_cust_id = dc.id;
-            transaction.grandTotal = Math.Round(decimal.Parse(txtGrandTotal.Text),2);
+            transaction.grandTotal = Math.Round(decimal.Parse("0" + txtGrandTotal.Text),2);
             transaction.transaction_date = DateTime.Now;
             transaction.tax = decimal.Parse("0" + txtVat.Text);
             transaction.discount = decimal.Parse("0" + txtDiscount.Text);
@@ -536,6 +574,40 @@ namespace AnyStore.UI
                     CalcTot();
                 }
             }
+        }
+
+        private void txtCard_TextChanged(object sender, EventArgs e)
+        {
+            //Get the paid amount and grand total
+            decimal grandTotal = decimal.Parse(txtGrandTotal.Text);
+            decimal paidAmount = decimal.Parse("0" + txtCash.Text) + decimal.Parse("0" + txtCard.Text) + decimal.Parse("0" + txtCheque.Text);
+
+            decimal returnAmount = paidAmount - grandTotal;
+
+            //Display the return amount as well
+            txtReturnAmount.Text = returnAmount.ToString();
+        }
+
+        private void txtCheque_TextChanged(object sender, EventArgs e)
+        {
+            //Get the paid amount and grand total
+            decimal grandTotal = decimal.Parse(txtGrandTotal.Text);
+            decimal paidAmount = decimal.Parse("0" + txtCash.Text) + decimal.Parse("0" + txtCard.Text) + decimal.Parse("0" + txtCheque.Text);
+
+            decimal returnAmount = paidAmount - grandTotal;
+
+            //Display the return amount as well
+            txtReturnAmount.Text = returnAmount.ToString();
+        }
+
+        private void txtSubTotal_TextChanged(object sender, EventArgs e)
+        {
+            txtGrandTotal.Text = txtSubTotal.Text;
+        }
+
+        private void txtGrandTotal_TextChanged(object sender, EventArgs e)
+        {
+            txtCash.Text = txtGrandTotal.Text;
         }
     }
 }
