@@ -155,6 +155,49 @@ namespace AnyStore.DAL
         }
         #endregion
 
+        #region METHOD TO DISPLAY TRANSACTION BASED ON TRANSACTION ID
+        public DataTable DisplayTransactionByID(int id)
+        {
+            //Create SQL Connection
+            SqlConnection conn = new SqlConnection(myconnstrng);
+
+            //Create a DataTable
+            DataTable dt = new DataTable();
+
+            //to do complete this function
+            try
+            {
+                //Write SQL Query
+                string sql = " SELECT tbl_transactions.id, tbl_transactions.invoice_no, tbl_transactions.grandTotal, tbl_transactions.transaction_date, tbl_dea_cust.name, tbl_products.name AS Expr1, tbl_products.description, tbl_transaction_detail.discount, tbl_transaction_detail.total, " + 
+                        " tbl_transaction_detail.rate, tbl_transaction_detail.qty " +
+                        " FROM tbl_transactions INNER JOIN " +
+                        " tbl_transaction_detail ON tbl_transactions.id = tbl_transaction_detail.transaction_id INNER JOIN " +
+                        " tbl_dea_cust ON tbl_transactions.dea_cust_id = tbl_dea_cust.id INNER JOIN " +
+                        " tbl_products ON tbl_transaction_detail.product_id = tbl_products.id " +
+                        " WHERE id ='" + id + "'";
+
+                //SQL Command to Execute Query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                //SQlDataAdapter to hold the data from database
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                //Open DAtabase Connection
+                conn.Open();
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dt;
+        }
+        #endregion
+
         #region METHOD TO GET NEXT INVOICE NO
         public decimal GetNextInvoiceNo()
         {

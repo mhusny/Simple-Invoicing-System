@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -270,13 +271,17 @@ namespace AnyStore.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            
+            
             //validation
             if (decimal.Parse("0" + txtCheque.Text) > 0 && txtChequeNo.Text.Length <2 )
             {
                 MessageBox.Show("Please enter a cheque no.");
             }
 
-
+            //to do cancell bills
+            //to do open bills
+            //to do edit bills
 
             //Get the Values from PurchaseSales Form First
             transactionsBLL transaction = new transactionsBLL();
@@ -364,6 +369,9 @@ namespace AnyStore.UI
                     scope.Complete();
 
                     //Code to Print Bill
+
+                    //to do print bills
+
                     DGVPrinter printer = new DGVPrinter();
 
                     printer.Title = "\r\n\r\n\r\n ANYSTORE PVT. LTD. \r\n\r\n";
@@ -373,10 +381,11 @@ namespace AnyStore.UI
                     printer.PageNumberInHeader = false;
                     printer.PorportionalColumns = true;
                     printer.HeaderCellAlignment = StringAlignment.Near;
-                    printer.Footer = "Discount: "+ txtDiscount.Text +"% \r\n" + "VAT: " + txtVat.Text + "% \r\n" + "Grand Total: "+ txtGrandTotal.Text + "\r\n\r\n" +"Thank you for doing business with us.";
+                    printer.Footer = "Discount: " + txtDiscount.Text + "% \r\n" + "VAT: " + txtVat.Text + "% \r\n" + "Grand Total: " + txtGrandTotal.Text + "\r\n\r\n" + "Thank you for doing business with us.";
                     printer.FooterSpacing = 15;
                     printer.PrintDataGridView(dgvAddedProducts);
-
+                    
+               
                     MessageBox.Show("Transaction Completed Sucessfully");
                     //Celar the Data Grid View and Clear all the TExtboxes
                     dgvAddedProducts.DataSource = null;

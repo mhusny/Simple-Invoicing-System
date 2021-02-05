@@ -1645,6 +1645,8 @@ namespace DGVPrinterHelper //AllocationRequest
             //printDoc.BeginPrint += new PrintEventHandler(BeginPrintEventHandler);
             PrintMargins = new Margins(60, 60, 40, 40);
 
+            //printDoc.DefaultPageSettings.PaperSize = printDoc.PrinterSettings.PaperSizes[34];
+
             // set default fonts
             pagenofont = new Font("Tahoma", 8, FontStyle.Regular, GraphicsUnit.Point);
             pagenocolor = Color.Black;
@@ -1686,6 +1688,7 @@ namespace DGVPrinterHelper //AllocationRequest
             cellformatflags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
         }
 
+        
 
         //---------------------------------------------------------------------
         //---------------------------------------------------------------------

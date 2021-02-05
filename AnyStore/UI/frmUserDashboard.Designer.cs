@@ -34,12 +34,12 @@
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dealerAndCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblSHead = new System.Windows.Forms.Label();
-            this.lblLName = new System.Windows.Forms.Label();
             this.lblAppFName = new System.Windows.Forms.Label();
             this.lblLoggedInUser = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.lblFooter = new System.Windows.Forms.Label();
+            this.lblLName = new System.Windows.Forms.Label();
             this.menuStripTop.SuspendLayout();
             this.pnlFooter.SuspendLayout();
             this.SuspendLayout();
@@ -96,25 +96,15 @@
             this.lblSHead.TabIndex = 11;
             this.lblSHead.Text = "Billing and Inventory Management";
             // 
-            // lblLName
-            // 
-            this.lblLName.AutoSize = true;
-            this.lblLName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLName.Location = new System.Drawing.Point(678, 320);
-            this.lblLName.Name = "lblLName";
-            this.lblLName.Size = new System.Drawing.Size(99, 37);
-            this.lblLName.TabIndex = 10;
-            this.lblLName.Text = "STORE";
-            // 
             // lblAppFName
             // 
             this.lblAppFName.AutoSize = true;
             this.lblAppFName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppFName.Location = new System.Drawing.Point(620, 320);
+            this.lblAppFName.Location = new System.Drawing.Point(638, 320);
             this.lblAppFName.Name = "lblAppFName";
-            this.lblAppFName.Size = new System.Drawing.Size(69, 37);
+            this.lblAppFName.Size = new System.Drawing.Size(184, 37);
             this.lblAppFName.TabIndex = 9;
-            this.lblAppFName.Text = "ANY";
+            this.lblAppFName.Text = "Entertainment";
             // 
             // lblLoggedInUser
             // 
@@ -153,9 +143,19 @@
             this.lblFooter.ForeColor = System.Drawing.Color.White;
             this.lblFooter.Location = new System.Drawing.Point(586, 8);
             this.lblFooter.Name = "lblFooter";
-            this.lblFooter.Size = new System.Drawing.Size(167, 17);
+            this.lblFooter.Size = new System.Drawing.Size(202, 17);
             this.lblFooter.TabIndex = 0;
-            this.lblFooter.Text = "Developed By: VIJAY THAPA";
+            this.lblFooter.Text = "Sri Lanka Rupavahini Corporation";
+            // 
+            // lblLName
+            // 
+            this.lblLName.AutoSize = true;
+            this.lblLName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLName.Location = new System.Drawing.Point(591, 320);
+            this.lblLName.Name = "lblLName";
+            this.lblLName.Size = new System.Drawing.Size(55, 37);
+            this.lblLName.TabIndex = 10;
+            this.lblLName.Text = "RU";
             // 
             // frmUserDashboard
             // 
@@ -193,12 +193,12 @@
         private System.Windows.Forms.ToolStripMenuItem salesFormsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inventoryToolStripMenuItem;
         private System.Windows.Forms.Label lblSHead;
-        private System.Windows.Forms.Label lblLName;
         private System.Windows.Forms.Label lblAppFName;
         private System.Windows.Forms.Label lblLoggedInUser;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Panel pnlFooter;
         private System.Windows.Forms.Label lblFooter;
         private System.Windows.Forms.ToolStripMenuItem dealerAndCustomerToolStripMenuItem;
+        private System.Windows.Forms.Label lblLName;
     }
 }

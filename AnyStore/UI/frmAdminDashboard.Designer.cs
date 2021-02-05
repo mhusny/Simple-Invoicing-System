@@ -39,9 +39,9 @@
             this.transactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblLoggedInUser = new System.Windows.Forms.Label();
-            this.lblAppFName = new System.Windows.Forms.Label();
-            this.lblLName = new System.Windows.Forms.Label();
             this.lblSHead = new System.Windows.Forms.Label();
+            this.lblLName = new System.Windows.Forms.Label();
+            this.lblAppFName = new System.Windows.Forms.Label();
             this.pnlFooter.SuspendLayout();
             this.menuStripTop.SuspendLayout();
             this.SuspendLayout();
@@ -63,9 +63,9 @@
             this.lblFooter.ForeColor = System.Drawing.Color.White;
             this.lblFooter.Location = new System.Drawing.Point(586, 8);
             this.lblFooter.Name = "lblFooter";
-            this.lblFooter.Size = new System.Drawing.Size(169, 17);
+            this.lblFooter.Size = new System.Drawing.Size(202, 17);
             this.lblFooter.TabIndex = 0;
-            this.lblFooter.Text = "Developed By: VIJAY THAPA";
+            this.lblFooter.Text = "Sri Lanka Rupavahini Corporation";
             // 
             // menuStripTop
             // 
@@ -120,7 +120,7 @@
             // transactionToolStripMenuItem
             // 
             this.transactionToolStripMenuItem.Name = "transactionToolStripMenuItem";
-            this.transactionToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.transactionToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.transactionToolStripMenuItem.Text = "Transaction";
             this.transactionToolStripMenuItem.Click += new System.EventHandler(this.transactionToolStripMenuItem_Click);
             // 
@@ -144,26 +144,6 @@
             this.lblLoggedInUser.Size = new System.Drawing.Size(0, 17);
             this.lblLoggedInUser.TabIndex = 3;
             // 
-            // lblAppFName
-            // 
-            this.lblAppFName.AutoSize = true;
-            this.lblAppFName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppFName.Location = new System.Drawing.Point(598, 266);
-            this.lblAppFName.Name = "lblAppFName";
-            this.lblAppFName.Size = new System.Drawing.Size(69, 37);
-            this.lblAppFName.TabIndex = 4;
-            this.lblAppFName.Text = "ANY";
-            // 
-            // lblLName
-            // 
-            this.lblLName.AutoSize = true;
-            this.lblLName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLName.Location = new System.Drawing.Point(656, 266);
-            this.lblLName.Name = "lblLName";
-            this.lblLName.Size = new System.Drawing.Size(99, 37);
-            this.lblLName.TabIndex = 5;
-            this.lblLName.Text = "STORE";
-            // 
             // lblSHead
             // 
             this.lblSHead.AutoSize = true;
@@ -175,14 +155,34 @@
             this.lblSHead.TabIndex = 6;
             this.lblSHead.Text = "Billing and Inventory Management";
             // 
+            // lblLName
+            // 
+            this.lblLName.AutoSize = true;
+            this.lblLName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLName.Location = new System.Drawing.Point(557, 266);
+            this.lblLName.Name = "lblLName";
+            this.lblLName.Size = new System.Drawing.Size(55, 37);
+            this.lblLName.TabIndex = 12;
+            this.lblLName.Text = "RU";
+            // 
+            // lblAppFName
+            // 
+            this.lblAppFName.AutoSize = true;
+            this.lblAppFName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppFName.Location = new System.Drawing.Point(604, 266);
+            this.lblAppFName.Name = "lblAppFName";
+            this.lblAppFName.Size = new System.Drawing.Size(184, 37);
+            this.lblAppFName.TabIndex = 11;
+            this.lblAppFName.Text = "Entertainment";
+            // 
             // frmAdminDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1192, 451);
-            this.Controls.Add(this.lblSHead);
             this.Controls.Add(this.lblLName);
             this.Controls.Add(this.lblAppFName);
+            this.Controls.Add(this.lblSHead);
             this.Controls.Add(this.lblLoggedInUser);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.pnlFooter);
@@ -214,11 +214,11 @@
         private System.Windows.Forms.ToolStripMenuItem inventoryToolStripMenuItem;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label lblLoggedInUser;
-        private System.Windows.Forms.Label lblAppFName;
-        private System.Windows.Forms.Label lblLName;
         private System.Windows.Forms.Label lblSHead;
         private System.Windows.Forms.ToolStripMenuItem deealerAndCustomerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transactionToolStripMenuItem;
+        private System.Windows.Forms.Label lblLName;
+        private System.Windows.Forms.Label lblAppFName;
     }
 }
 
