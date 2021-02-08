@@ -12,7 +12,14 @@ namespace AnyStore.UI
 {
     public partial class frmReport : Form
     {
-
+        //List<BLL.transactionDetailBLL> _list;
+        //Orders _orders;
+        //public frmReport(Orders orders, List<OrderDetail> list)
+        //{
+        //    InitializeComponent();
+        //    _orders = orders;
+        //    _list = list;
+        //}
 
         public frmReport()
         {

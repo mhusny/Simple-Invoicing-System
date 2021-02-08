@@ -151,11 +151,11 @@
             // 
             this.lblLName.AutoSize = true;
             this.lblLName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLName.Location = new System.Drawing.Point(591, 320);
+            this.lblLName.Location = new System.Drawing.Point(569, 320);
             this.lblLName.Name = "lblLName";
-            this.lblLName.Size = new System.Drawing.Size(55, 37);
+            this.lblLName.Size = new System.Drawing.Size(75, 37);
             this.lblLName.TabIndex = 10;
-            this.lblLName.Text = "RU";
+            this.lblLName.Text = "RUU";
             // 
             // frmUserDashboard
             // 
