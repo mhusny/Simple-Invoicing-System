@@ -88,7 +88,7 @@
     <Compile Include="BLL\transactionDetailBLL.cs" />
     <Compile Include="BLL\transactionsBLL.cs" />
     <Compile Include="BLL\userBLL.cs" />
-    <Compile Include="DAL\BillDAL.cs" />
+    <Compile Include="BLL\BillBLL.cs" />
     <Compile Include="DAL\categoriesDAL.cs" />
     <Compile Include="DAL\DeaCustDAL.cs" />
     <Compile Include="DAL\DGVPrinter.cs" />
@@ -97,10 +97,10 @@
     <Compile Include="DAL\transactionDAL.cs" />
     <Compile Include="DAL\transactionDetailDAL.cs" />
     <Compile Include="DAL\userDAL.cs" />
-    <Compile Include="Report\Bill.cs">
+    <Compile Include="Report\rptBill.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Bill.rpt</DependentUpon>
+      <DependentUpon>rptBill.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
@@ -172,9 +172,9 @@
     <Compile Include="UI\frmUsers.Designer.cs">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Report\Bill.rpt">
+    <EmbeddedResource Include="Report\rptBill.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Bill.cs</LastGenOutput>
+      <LastGenOutput>rptBill.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmAdminDashboard.resx">
       <DependentUpon>frmAdminDashboard.cs</DependentUpon>

@@ -156,13 +156,14 @@ namespace AnyStore.DAL
         #endregion
 
         #region METHOD TO DISPLAY TRANSACTION BASED ON TRANSACTION ID
-        public DataTable DisplayTransactionByID(int id)
+        public DataSet DisplayTransactionByID(int id)
         {
             //Create SQL Connection
             SqlConnection conn = new SqlConnection(myconnstrng);
 
             //Create a DataTable
-            DataTable dt = new DataTable();
+            //DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
 
             //to do complete this function
             try
@@ -174,7 +175,7 @@ namespace AnyStore.DAL
                         " tbl_transaction_detail ON tbl_transactions.id = tbl_transaction_detail.transaction_id INNER JOIN " +
                         " tbl_dea_cust ON tbl_transactions.dea_cust_id = tbl_dea_cust.id INNER JOIN " +
                         " tbl_products ON tbl_transaction_detail.product_id = tbl_products.id " +
-                        " WHERE id ='" + id + "'";
+                        " WHERE tbl_transactions.id = " + id + "";
 
                 //SQL Command to Execute Query
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -183,7 +184,8 @@ namespace AnyStore.DAL
 
                 //Open DAtabase Connection
                 conn.Open();
-                adapter.Fill(dt);
+                //adapter.Fill(dt);
+                adapter.Fill(ds);
             }
             catch (Exception ex)
             {
@@ -194,7 +196,7 @@ namespace AnyStore.DAL
                 conn.Close();
             }
 
-            return dt;
+            return ds;
         }
         #endregion
 

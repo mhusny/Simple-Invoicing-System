@@ -50,6 +50,7 @@
             this.Controls.Add(this.crystalReportViewer1);
             this.Name = "frmReport";
             this.Text = "Report Viewer";
+            this.Load += new System.EventHandler(this.frmReport_Load);
             this.ResumeLayout(false);
 
         }

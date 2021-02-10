@@ -16,14 +16,14 @@ namespace AnyStore.Report {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Bill : ReportClass {
+    public class rptBill : ReportClass {
         
-        public Bill() {
+        public rptBill() {
         }
         
         public override string ResourceName {
             get {
-                return "Bill.rpt";
+                return "rptBill.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace AnyStore.Report {
         
         public override string FullResourceName {
             get {
-                return "AnyStore.Report.Bill.rpt";
+                return "AnyStore.Report.rptBill.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace AnyStore.Report {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedBill : Component, ICachedReport {
+    public class CachedrptBill : Component, ICachedReport {
         
-        public CachedBill() {
+        public CachedrptBill() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace AnyStore.Report {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Bill rpt = new Bill();
+            rptBill rpt = new rptBill();
             rpt.Site = this.Site;
             return rpt;
         }
