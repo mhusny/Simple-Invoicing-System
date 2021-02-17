@@ -163,7 +163,7 @@ namespace AnyStore.DAL
 
             //Create a DataTable
             //DataTable dt = new DataTable();
-            DataSet ds = new DataSet();
+            DataSet ds2 = new DataSet();
 
             //to do complete this function
             try
@@ -185,7 +185,7 @@ namespace AnyStore.DAL
                 //Open DAtabase Connection
                 conn.Open();
                 //adapter.Fill(dt);
-                adapter.Fill(ds);
+                adapter.Fill(ds2);
             }
             catch (Exception ex)
             {
@@ -196,7 +196,7 @@ namespace AnyStore.DAL
                 conn.Close();
             }
 
-            return ds;
+            return ds2;
         }
         #endregion
 

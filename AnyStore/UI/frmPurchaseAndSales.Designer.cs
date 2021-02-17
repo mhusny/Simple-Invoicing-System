@@ -73,6 +73,7 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblProductSearch = new System.Windows.Forms.Label();
             this.lblDeaCustTitle = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.pnlDeaCust.SuspendLayout();
@@ -223,6 +224,7 @@
             // 
             // pnlCalculation
             // 
+            this.pnlCalculation.Controls.Add(this.button4);
             this.pnlCalculation.Controls.Add(this.button3);
             this.pnlCalculation.Controls.Add(this.button2);
             this.pnlCalculation.Controls.Add(this.button1);
@@ -359,11 +361,11 @@
             this.btnSave.BackColor = System.Drawing.Color.Teal;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(140, 280);
+            this.btnSave.Location = new System.Drawing.Point(243, 280);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(217, 40);
+            this.btnSave.Size = new System.Drawing.Size(114, 40);
             this.btnSave.TabIndex = 14;
-            this.btnSave.Text = "SAVE (F9)";
+            this.btnSave.Text = "Process (F9)";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -562,6 +564,18 @@
             this.lblDeaCustTitle.TabIndex = 0;
             this.lblDeaCustTitle.Text = "Dealer and Customer Details";
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Teal;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(167, 280);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(70, 40);
+            this.button4.TabIndex = 25;
+            this.button4.Text = "Save";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // frmPurchaseAndSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -636,5 +650,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button4;
     }
 }

@@ -291,7 +291,8 @@ namespace AnyStore.UI
             string deaCustName = cmbCustomer.Text;
             DeaCustBLL dc = dcDAL.GetDeaCustIDFromName(deaCustName);
 
-            transaction.invoice_no = decimal.Parse(txtInvoiceNo.Text);
+            //transaction.invoice_no = decimal.Parse(txtInvoiceNo.Text);
+            transaction.invoice_no = decimal.Parse(tDAL.GetNextInvoiceNo().ToString());
             transaction.dea_cust_id = dc.id;
             transaction.grandTotal = Math.Round(decimal.Parse("0" + txtGrandTotal.Text),2);
             transaction.transaction_date = DateTime.Now;
@@ -358,11 +359,14 @@ namespace AnyStore.UI
                     bool y = tdDAL.InsertTransactionDetail(transactionDetail);
                     success = w && x && y;
 
-                    tDAL.IncrementInvNo(decimal.Parse(txtInvoiceNo.Text));
+                    tDAL.IncrementInvNo(decimal.Parse(tDAL.GetNextInvoiceNo().ToString()));
                 }
                 //update grand total
                 if (success == true)
                 {
+                    frmReport r = new frmReport();
+                    r.TrID = transactionID;
+                    r.ShowDialog();
                     //Transaction Complete
                     scope.Complete();
 
@@ -370,9 +374,6 @@ namespace AnyStore.UI
 
                     //to do print bills
 
-                    frmReport r = new frmReport();
-                    r.TrID = transactionID;
-                    r.ShowDialog();
 
                     //DGVPrinter printer = new DGVPrinter();
 
@@ -386,13 +387,14 @@ namespace AnyStore.UI
                     //printer.Footer = "Discount: " + txtDiscount.Text + "% \r\n" + "VAT: " + txtVat.Text + "% \r\n" + "Grand Total: " + txtGrandTotal.Text + "\r\n\r\n" + "Thank you for doing business with us.";
                     //printer.FooterSpacing = 15;
                     //printer.PrintDataGridView(dgvAddedProducts);
-                    
-               
+
+
                     MessageBox.Show("Transaction Completed Sucessfully");
                     //Celar the Data Grid View and Clear all the TExtboxes
                     dgvAddedProducts.DataSource = null;
                     dgvAddedProducts.Rows.Clear();
                     transactionDT.Rows.Clear();
+
 
 
                     txtSearchProduct.Text = "";
@@ -538,8 +540,8 @@ namespace AnyStore.UI
                 decimal Total = 0;
                 for (int i = 0; i < dgvAddedProducts.Rows.Count - 1; i++)
                 {
-                    Total = Total + (decimal.Parse(dgvAddedProducts.Rows[i].Cells["Quantity"].Value.ToString()) * decimal.Parse(dgvAddedProducts.Rows[i].Cells["Rate"].Value.ToString()) * (1 - decimal.Parse(dgvAddedProducts.Rows[i].Cells["Discount"].Value.ToString()) / 100));
-                    dgvAddedProducts.Rows[i].Cells["Total"].Value = decimal.Parse(dgvAddedProducts.Rows[i].Cells["Quantity"].Value.ToString()) * decimal.Parse(dgvAddedProducts.Rows[i].Cells["Rate"].Value.ToString()) * (1 - decimal.Parse(dgvAddedProducts.Rows[i].Cells["Discount"].Value.ToString()) / 100);
+                    Total = Total + (decimal.Parse("0" + dgvAddedProducts.Rows[i].Cells["Quantity"].Value.ToString()) * decimal.Parse("0" + dgvAddedProducts.Rows[i].Cells["Rate"].Value.ToString()) * (1 - decimal.Parse("0" + dgvAddedProducts.Rows[i].Cells["Discount"].Value.ToString()) / 100));
+                    dgvAddedProducts.Rows[i].Cells["Total"].Value = decimal.Parse("0" + dgvAddedProducts.Rows[i].Cells["Quantity"].Value.ToString()) * decimal.Parse("0" + dgvAddedProducts.Rows[i].Cells["Rate"].Value.ToString()) * (1 - decimal.Parse("0" + dgvAddedProducts.Rows[i].Cells["Discount"].Value.ToString()) / 100);
                 }
 
                 //Display the Subtotal in textbox
