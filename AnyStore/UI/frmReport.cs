@@ -23,6 +23,18 @@ namespace AnyStore.UI
         public int TrID;
         public int DocId;
 
+        public String itemfrom;
+        public String itemto;
+
+        public String cusfrom;
+        public String custo;
+
+        public String invfrom;
+        public String invto;
+
+        public DateTime datefrom;
+        public DateTime dateto;
+
         public frmReport()
         {
             InitializeComponent();
@@ -67,7 +79,7 @@ namespace AnyStore.UI
             {
                 List<BLL.transactionsBLL> _List = new List<BLL.transactionsBLL>();
 
-                DataTable dt = dblayer.DisplayTransactions("*");
+                DataTable dt = dblayer.DisplayTransactions("*", invfrom, invto);
 
                 foreach (DataRow dr in dt.Rows)
                 {

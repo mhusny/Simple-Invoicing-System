@@ -53,6 +53,10 @@
             this.cmbCusFrom = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.cmbItemfrom = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cmbItemto = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactions)).BeginInit();
@@ -104,7 +108,7 @@
             // 
             this.lblTransactionType.AutoSize = true;
             this.lblTransactionType.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTransactionType.Location = new System.Drawing.Point(12, 39);
+            this.lblTransactionType.Location = new System.Drawing.Point(520, 70);
             this.lblTransactionType.Name = "lblTransactionType";
             this.lblTransactionType.Size = new System.Drawing.Size(105, 17);
             this.lblTransactionType.TabIndex = 4;
@@ -117,9 +121,9 @@
             this.cmbTransactionType.Items.AddRange(new object[] {
             "Purchase",
             "Sales"});
-            this.cmbTransactionType.Location = new System.Drawing.Point(140, 39);
+            this.cmbTransactionType.Location = new System.Drawing.Point(523, 90);
             this.cmbTransactionType.Name = "cmbTransactionType";
-            this.cmbTransactionType.Size = new System.Drawing.Size(270, 25);
+            this.cmbTransactionType.Size = new System.Drawing.Size(102, 25);
             this.cmbTransactionType.TabIndex = 5;
             this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.cmbTransactionType_SelectedIndexChanged);
             // 
@@ -301,12 +305,60 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
+            // cmbItemfrom
+            // 
+            this.cmbItemfrom.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbItemfrom.FormattingEnabled = true;
+            this.cmbItemfrom.Items.AddRange(new object[] {
+            "Purchase",
+            "Sales"});
+            this.cmbItemfrom.Location = new System.Drawing.Point(114, 42);
+            this.cmbItemfrom.Name = "cmbItemfrom";
+            this.cmbItemfrom.Size = new System.Drawing.Size(105, 25);
+            this.cmbItemfrom.TabIndex = 31;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(12, 45);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 17);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "Item From";
+            // 
+            // cmbItemto
+            // 
+            this.cmbItemto.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbItemto.FormattingEnabled = true;
+            this.cmbItemto.Items.AddRange(new object[] {
+            "Purchase",
+            "Sales"});
+            this.cmbItemto.Location = new System.Drawing.Point(315, 42);
+            this.cmbItemto.Name = "cmbItemto";
+            this.cmbItemto.Size = new System.Drawing.Size(105, 25);
+            this.cmbItemto.TabIndex = 33;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(229, 45);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(51, 17);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "Item To";
+            // 
             // frmTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(840, 461);
+            this.Controls.Add(this.cmbItemto);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.cmbItemfrom);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.cmbCusTo);
             this.Controls.Add(this.label6);
@@ -369,5 +421,9 @@
         private System.Windows.Forms.ComboBox cmbCusFrom;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.ComboBox cmbItemfrom;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cmbItemto;
+        private System.Windows.Forms.Label label9;
     }
 }

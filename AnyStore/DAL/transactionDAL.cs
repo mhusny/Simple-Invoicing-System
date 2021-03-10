@@ -120,7 +120,7 @@ namespace AnyStore.DAL
         #endregion
 
         #region METHOD TO DISPLAY TRANSACTIONS BY CRITERIA
-        public DataTable DisplayTransactions(string fields)
+        public DataTable DisplayTransactions(string fields, string invfrom , string invto)
         {
             //SQlConnection First
             SqlConnection conn = new SqlConnection(myconnstrng);
@@ -131,8 +131,8 @@ namespace AnyStore.DAL
             try
             {
                 //Write the SQL Query to Display all Transactions
-                //string sql = "SELECT " + fields + " FROM tbl_transactions where invoice_no and invoice_no <= invoice_no";
-                string sql = "SELECT " + fields + " FROM tbl_transactions where invoice_no and invoice_no <= invoice_no";
+                //string sql = "SELECT " + fields + " FROM tbl_transactions where invoice_no >= invoice_no and invoice_no <= invoice_no";
+                string sql = "SELECT " + fields + " FROM tbl_transactions where invoice_no >= '" + invfrom + "' and invoice_no <= '" + invto + "'";
 
                 sql = sql + "";
 

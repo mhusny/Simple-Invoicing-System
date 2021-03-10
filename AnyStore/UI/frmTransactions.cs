@@ -33,11 +33,11 @@ namespace AnyStore.UI
             DataTable dt = tdal.DisplayAllTransactions();
             dgvTransactions.DataSource = dt;
 
-            DataTable dt1 = tdal.DisplayTransactions("invoice_no");
+            DataTable dt1 = tdal.DisplayTransactions("invoice_no", "0", "999999999");
             cmbInvFrom.DataSource = dt1;
             cmbInvFrom.ValueMember = "invoice_no";
 
-            DataTable dt2 = tdal.DisplayTransactions("invoice_no");
+            DataTable dt2 = tdal.DisplayTransactions("invoice_no", "0", "999999999");
             cmbInvTo.DataSource = dt2;
             cmbInvTo.ValueMember = "invoice_no";
 
@@ -75,6 +75,8 @@ namespace AnyStore.UI
         {
             frmReport r = new frmReport();
             r.DocId = 2;
+            r.invfrom = cmbInvFrom.Text;
+            r.invto = cmbInvTo.Text;
             r.ShowDialog();
         }
     }
