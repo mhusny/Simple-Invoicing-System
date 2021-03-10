@@ -40,6 +40,7 @@
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.lblFooter = new System.Windows.Forms.Label();
             this.lblLName = new System.Windows.Forms.Label();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripTop.SuspendLayout();
             this.pnlFooter.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +51,8 @@
             this.purchaseToolStripMenuItem,
             this.salesFormsToolStripMenuItem,
             this.inventoryToolStripMenuItem,
-            this.dealerAndCustomerToolStripMenuItem});
+            this.dealerAndCustomerToolStripMenuItem,
+            this.reportToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
             this.menuStripTop.Size = new System.Drawing.Size(1248, 24);
@@ -157,6 +159,12 @@
             this.lblLName.TabIndex = 10;
             this.lblLName.Text = "RUU";
             // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.reportToolStripMenuItem.Text = "Report";
+            // 
             // frmUserDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,5 +208,6 @@
         private System.Windows.Forms.Label lblFooter;
         private System.Windows.Forms.ToolStripMenuItem dealerAndCustomerToolStripMenuItem;
         private System.Windows.Forms.Label lblLName;
+        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
     }
 }

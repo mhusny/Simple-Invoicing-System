@@ -119,6 +119,47 @@ namespace AnyStore.DAL
         }
         #endregion
 
+        #region METHOD TO DISPLAY TRANSACTIONS BY CRITERIA
+        public DataTable DisplayTransactions(string fields)
+        {
+            //SQlConnection First
+            SqlConnection conn = new SqlConnection(myconnstrng);
+
+            //Create a DAta Table to hold the datafrom database temporarily
+            DataTable dt = new DataTable();
+
+            try
+            {
+                //Write the SQL Query to Display all Transactions
+                //string sql = "SELECT " + fields + " FROM tbl_transactions where invoice_no and invoice_no <= invoice_no";
+                string sql = "SELECT " + fields + " FROM tbl_transactions where invoice_no and invoice_no <= invoice_no";
+
+                sql = sql + "";
+
+                //SqlCommand to Execute Query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                //SqlDataAdapter to Hold the data from database
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                //Open DAtabase Connection
+                conn.Open();
+
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dt;
+        }
+        #endregion
+
         #region METHOD TO DISPLAY TRANSACTION BASED ON TRANSACTION TYPE
         public DataTable DisplayTransactionByType(string type)
         {
