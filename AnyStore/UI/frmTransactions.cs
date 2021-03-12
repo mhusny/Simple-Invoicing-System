@@ -68,8 +68,52 @@ namespace AnyStore.UI
 
         private void dgvTransactions_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            DataTable transactionDT = new DataTable();
+            transactionDT.Columns.Add("Code");
+            transactionDT.Columns.Add("Product Name");
+            transactionDT.Columns.Add("Rate");
+            transactionDT.Columns.Add("Quantity");
+            transactionDT.Columns.Add("Discount");
+            transactionDT.Columns.Add("Total");
+
+            DataSet tr;
             int id = int.Parse(dgvTransactions.Rows[e.RowIndex].Cells[0].Value.ToString());
+            tr = tdal.DisplayTransactionByID(id);
+
+            frmPurchaseAndSales fsales = new frmPurchaseAndSales();
+            fsales.Show();
+
+            foreach (DataRow dr in tr.Tables[0].Rows)
+            {
+
+                //Add product to the dAta Grid View
+                transactionDT.Rows.Add(dr[32], dr["description"], dr["rate"], dr["qty"], dr["discount1"], dr["total"]);
+                //Show in DAta Grid View
+                fsales.dgvAddedProducts.DataSource = transactionDT;
+            }
+            fsales.cmbCustomer.Text = tr.Tables[0].Rows[0]["name"].ToString();
+
+            fsales.dtpBillDate.Value = DateTime.Parse(tr.Tables[0].Rows[0]["transaction_date"].ToString());
+            fsales.txtInvoiceNo.Text = tr.Tables[0].Rows[0]["invoice_no"].ToString();
+
+            if (double.Parse(tr.Tables[0].Rows[0]["card"].ToString()) > 0)
+            {
+                fsales.txtCard.Text = fsales.txtGrandTotal.Text;
+                fsales.txtCash.Text = "0";
+            }
+
+            if (double.Parse(tr.Tables[0].Rows[0]["cheque"].ToString()) > 0)
+            {
+                fsales.txtCheque.Text = fsales.txtGrandTotal.Text;
+                fsales.txtChequeNo.Text = tr.Tables[0].Rows[0]["cheque_no"].ToString();
+                fsales.txtCash.Text = "0";
+            }
+
+            //CalcTot();
+            //txtSearchProduct.Text = "";
+            //TxtQty.Text = "0.00";
         }
+   
 
         private void btnPrint_Click(object sender, EventArgs e)
         {

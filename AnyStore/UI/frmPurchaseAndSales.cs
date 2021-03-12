@@ -421,7 +421,7 @@ namespace AnyStore.UI
             }
         }
 
-        private void txtSearchProduct_KeyDown(object sender, KeyEventArgs e)
+        public void txtSearchProduct_KeyDown(object sender, KeyEventArgs e)
         {
             //Get the keyword from productsearch textbox
             string keyword = txtSearchProduct.Text;

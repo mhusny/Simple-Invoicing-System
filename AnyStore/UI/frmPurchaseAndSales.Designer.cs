@@ -42,6 +42,7 @@
             this.lblQuantity = new System.Windows.Forms.Label();
             this.TxtQty = new System.Windows.Forms.TextBox();
             this.pnlCalculation = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -73,7 +74,6 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblProductSearch = new System.Windows.Forms.Label();
             this.lblDeaCustTitle = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.pnlDeaCust.SuspendLayout();
@@ -253,6 +253,18 @@
             this.pnlCalculation.Name = "pnlCalculation";
             this.pnlCalculation.Size = new System.Drawing.Size(383, 331);
             this.pnlCalculation.TabIndex = 6;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Teal;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(167, 280);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(70, 40);
+            this.button4.TabIndex = 25;
+            this.button4.Text = "Save";
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
@@ -564,18 +576,6 @@
             this.lblDeaCustTitle.TabIndex = 0;
             this.lblDeaCustTitle.Text = "Dealer and Customer Details";
             // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.Teal;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(167, 280);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(70, 40);
-            this.button4.TabIndex = 25;
-            this.button4.Text = "Save";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
             // frmPurchaseAndSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,26 +610,16 @@
         private System.Windows.Forms.PictureBox pictureBoxClose;
         private System.Windows.Forms.Label lblTop;
         private System.Windows.Forms.Panel pnlDeaCust;
-        private System.Windows.Forms.DateTimePicker dtpBillDate;
         private System.Windows.Forms.Label lblBillDate;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblDeaCustTitle;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox TxtQty;
-        private System.Windows.Forms.TextBox txtSearchProduct;
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Label lblProductSearch;
         private System.Windows.Forms.Panel pnldataGRidView;
-        private System.Windows.Forms.DataGridView dgvAddedProducts;
         private System.Windows.Forms.Label lblDGVTtitle;
         private System.Windows.Forms.Panel pnlCalculation;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtReturnAmount;
-        private System.Windows.Forms.TextBox txtCash;
-        private System.Windows.Forms.TextBox txtGrandTotal;
-        private System.Windows.Forms.TextBox txtDiscount;
-        private System.Windows.Forms.TextBox txtVat;
-        private System.Windows.Forms.TextBox txtSubTotal;
         private System.Windows.Forms.Label lblReturnAmount;
         private System.Windows.Forms.Label lblPaidAmount;
         private System.Windows.Forms.Label lblGrandTotal;
@@ -637,19 +627,29 @@
         private System.Windows.Forms.Label lblDiscount;
         private System.Windows.Forms.Label lblSubTotal;
         private System.Windows.Forms.Label lblcalculationTitle;
-        private System.Windows.Forms.ComboBox cmbCustomer;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtInvoiceNo;
-        private System.Windows.Forms.TextBox txtCheque;
-        private System.Windows.Forms.TextBox txtCard;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtChequeNo;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
+        public System.Windows.Forms.DateTimePicker dtpBillDate;
+        public System.Windows.Forms.TextBox txtReturnAmount;
+        public System.Windows.Forms.TextBox txtCash;
+        public System.Windows.Forms.ComboBox cmbCustomer;
+        public System.Windows.Forms.TextBox txtInvoiceNo;
+        public System.Windows.Forms.TextBox txtCheque;
+        public System.Windows.Forms.TextBox txtCard;
+        public System.Windows.Forms.TextBox txtChequeNo;
+        public System.Windows.Forms.TextBox TxtQty;
+        public System.Windows.Forms.DataGridView dgvAddedProducts;
+        private System.Windows.Forms.TextBox txtSearchProduct;
+        private System.Windows.Forms.TextBox txtDiscount;
+        private System.Windows.Forms.TextBox txtVat;
+        private System.Windows.Forms.TextBox txtSubTotal;
+        public System.Windows.Forms.TextBox txtGrandTotal;
     }
 }

@@ -210,8 +210,7 @@ namespace AnyStore.DAL
             try
             {
                 //Write SQL Query
-                string sql = " SELECT tbl_transactions.id, tbl_transactions.invoice_no, tbl_transactions.grandTotal, tbl_transactions.transaction_date, tbl_dea_cust.name, tbl_products.name AS Expr1, tbl_products.description, tbl_transaction_detail.discount, tbl_transaction_detail.total, " + 
-                        " tbl_transaction_detail.rate, tbl_transaction_detail.qty " +
+                string sql = " SELECT  * " +
                         " FROM tbl_transactions INNER JOIN " +
                         " tbl_transaction_detail ON tbl_transactions.id = tbl_transaction_detail.transaction_id INNER JOIN " +
                         " tbl_dea_cust ON tbl_transactions.dea_cust_id = tbl_dea_cust.id INNER JOIN " +
