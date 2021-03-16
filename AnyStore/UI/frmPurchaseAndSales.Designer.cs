@@ -33,6 +33,7 @@
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.lblTop = new System.Windows.Forms.Label();
             this.pnlDeaCust = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pnldataGRidView = new System.Windows.Forms.Panel();
@@ -72,8 +73,8 @@
             this.txtSearchProduct = new System.Windows.Forms.TextBox();
             this.lblBillDate = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
-            this.lblProductSearch = new System.Windows.Forms.Label();
             this.lblDeaCustTitle = new System.Windows.Forms.Label();
+            this.cmbItemName = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.pnlDeaCust.SuspendLayout();
@@ -116,6 +117,8 @@
             // 
             // pnlDeaCust
             // 
+            this.pnlDeaCust.Controls.Add(this.cmbItemName);
+            this.pnlDeaCust.Controls.Add(this.label6);
             this.pnlDeaCust.Controls.Add(this.txtInvoiceNo);
             this.pnlDeaCust.Controls.Add(this.label1);
             this.pnlDeaCust.Controls.Add(this.pnldataGRidView);
@@ -125,18 +128,27 @@
             this.pnlDeaCust.Controls.Add(this.txtSearchProduct);
             this.pnlDeaCust.Controls.Add(this.lblBillDate);
             this.pnlDeaCust.Controls.Add(this.lblName);
-            this.pnlDeaCust.Controls.Add(this.lblProductSearch);
             this.pnlDeaCust.Controls.Add(this.lblDeaCustTitle);
             this.pnlDeaCust.Location = new System.Drawing.Point(13, 40);
             this.pnlDeaCust.Name = "pnlDeaCust";
             this.pnlDeaCust.Size = new System.Drawing.Size(955, 459);
             this.pnlDeaCust.TabIndex = 3;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(4, 88);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 17);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Name";
+            // 
             // txtInvoiceNo
             // 
             this.txtInvoiceNo.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInvoiceNo.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtInvoiceNo.Location = new System.Drawing.Point(250, 48);
+            this.txtInvoiceNo.Location = new System.Drawing.Point(250, 36);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
             this.txtInvoiceNo.ReadOnly = true;
             this.txtInvoiceNo.Size = new System.Drawing.Size(140, 46);
@@ -147,7 +159,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(291, 28);
+            this.label1.Location = new System.Drawing.Point(291, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 17);
             this.label1.TabIndex = 14;
@@ -528,10 +540,11 @@
             // 
             // txtSearchProduct
             // 
+            this.txtSearchProduct.BackColor = System.Drawing.SystemColors.Highlight;
             this.txtSearchProduct.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchProduct.Location = new System.Drawing.Point(65, 88);
+            this.txtSearchProduct.Location = new System.Drawing.Point(290, 85);
             this.txtSearchProduct.Name = "txtSearchProduct";
-            this.txtSearchProduct.Size = new System.Drawing.Size(153, 25);
+            this.txtSearchProduct.Size = new System.Drawing.Size(60, 25);
             this.txtSearchProduct.TabIndex = 7;
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.txtSearchProduct_TextChanged);
             this.txtSearchProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchProduct_KeyDown);
@@ -556,16 +569,6 @@
             this.lblName.TabIndex = 4;
             this.lblName.Text = "Name";
             // 
-            // lblProductSearch
-            // 
-            this.lblProductSearch.AutoSize = true;
-            this.lblProductSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductSearch.Location = new System.Drawing.Point(3, 88);
-            this.lblProductSearch.Name = "lblProductSearch";
-            this.lblProductSearch.Size = new System.Drawing.Size(39, 17);
-            this.lblProductSearch.TabIndex = 1;
-            this.lblProductSearch.Text = "Code";
-            // 
             // lblDeaCustTitle
             // 
             this.lblDeaCustTitle.AutoSize = true;
@@ -575,6 +578,17 @@
             this.lblDeaCustTitle.Size = new System.Drawing.Size(185, 17);
             this.lblDeaCustTitle.TabIndex = 0;
             this.lblDeaCustTitle.Text = "Dealer and Customer Details";
+            // 
+            // cmbItemName
+            // 
+            this.cmbItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbItemName.FormattingEnabled = true;
+            this.cmbItemName.Location = new System.Drawing.Point(65, 88);
+            this.cmbItemName.Name = "cmbItemName";
+            this.cmbItemName.Size = new System.Drawing.Size(153, 21);
+            this.cmbItemName.TabIndex = 8;
+            this.cmbItemName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbItemName_KeyDown);
             // 
             // frmPurchaseAndSales
             // 
@@ -615,7 +629,6 @@
         private System.Windows.Forms.Label lblDeaCustTitle;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label lblQuantity;
-        private System.Windows.Forms.Label lblProductSearch;
         private System.Windows.Forms.Panel pnldataGRidView;
         private System.Windows.Forms.Label lblDGVTtitle;
         private System.Windows.Forms.Panel pnlCalculation;
@@ -651,5 +664,7 @@
         private System.Windows.Forms.TextBox txtVat;
         private System.Windows.Forms.TextBox txtSubTotal;
         public System.Windows.Forms.TextBox txtGrandTotal;
+        private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.ComboBox cmbItemName;
     }
 }

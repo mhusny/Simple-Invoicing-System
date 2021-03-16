@@ -75,14 +75,19 @@ namespace AnyStore.UI
             //DeaCustBLL dc = dcDAL.GetDealerCustomerForTransaction();
 
             txtInvoiceNo.Text = tDAL.GetNextInvoiceNo().ToString();
-            DataSet ds =  dcDAL.GetDealerCustomerForTransaction();
 
+            DataSet ds =  dcDAL.GetDealerCustomerForTransaction();
             //Now transfer or set the value from DeCustBLL to textboxes
             cmbCustomer.DataSource = ds.Tables[0];
             cmbCustomer.ValueMember = "name";
             cmbCustomer.DisplayMember = "name";
             this.ActiveControl = txtSearchProduct;
-            
+
+            //Get Item list
+            DataTable items = pDAL.Search("");
+            cmbItemName.DataSource = items;
+            cmbItemName.ValueMember = "name";
+            cmbItemName.DisplayMember = "description";
         }
 
         private void KeyEvent(object sender, KeyEventArgs e) //Keyup Event 
@@ -400,7 +405,7 @@ namespace AnyStore.UI
 
 
                     txtSearchProduct.Text = "";
-                    
+                    cmbItemName.Text = "";
                     TxtQty.Text = "0";
                     txtSubTotal.Text = "0";
                     txtDiscount.Text = "0";
@@ -424,7 +429,25 @@ namespace AnyStore.UI
         public void txtSearchProduct_KeyDown(object sender, KeyEventArgs e)
         {
             //Get the keyword from productsearch textbox
-            string keyword = txtSearchProduct.Text;
+            string keyword = "";
+            try
+            {
+                if (txtSearchProduct.Text.Length > 0)
+                {
+                    keyword = txtSearchProduct.Text;
+                    cmbItemName.Text = "";
+                }
+                else if (cmbItemName.Text.Length > 0)
+                {
+                    keyword = cmbItemName.SelectedValue.ToString();
+                    txtSearchProduct.Text = "";
+                }
+            }
+            catch (Exception)
+            {
+               
+            }
+
             TxtQty.Text = "1";
             //Check if we have value to txtSearchProduct or not
             if (keyword == "")
@@ -479,6 +502,7 @@ namespace AnyStore.UI
                     
                     //Clear the Textboxes
                     txtSearchProduct.Text = "";
+                    cmbItemName.Text = "";
                     //txtProductName.Text = "";
                     //txtInventory.Text = "0.00";
                     //txtRate.Text = "0.00";
@@ -623,6 +647,11 @@ namespace AnyStore.UI
         private void txtGrandTotal_TextChanged(object sender, EventArgs e)
         {
             txtCash.Text = txtGrandTotal.Text;
+        }
+
+        private void cmbItemName_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtSearchProduct_KeyDown(sender, e);
         }
     }
 }
