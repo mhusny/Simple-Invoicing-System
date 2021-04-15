@@ -71,5 +71,110 @@ namespace AnyStore.DAL
             return isSuccess;
         }
         #endregion
+
+        #region Delete Method for Transaction Detail
+        public bool DeleteTransactionDetail(int tdid)
+        {
+            //Create a boolean value and set its default value to false
+            bool isSuccess = false;
+
+            //Create a database connection here
+            SqlConnection conn = new SqlConnection(myconnstrng);
+
+            try
+            {
+                //Sql Query to Insert Transaction detais
+                string sql = "DELETE FROM tbl_transaction_detail WHERE transaction_id = " + tdid +"";
+
+                //Passing the value to the SQL Query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                //Open Database connection
+                conn.Open();
+
+                //declare the int variable and execute the query
+                int rows = cmd.ExecuteNonQuery();
+
+                if (rows > 0)
+                {
+                    //Query Executed Successfully
+                    isSuccess = true;
+                }
+                else
+                {
+                    //FAiled to Execute Query
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                //Close Database Connection
+                conn.Close();
+            }
+            return isSuccess;
+        }
+        #endregion
+
+        #region Update Method for Transaction Detail
+        public bool UpdateTransactionDetail(transactionDetailBLL td)
+        {
+            //Create a boolean value and set its default value to false
+            bool isSuccess = false;
+
+            //Create a database connection here
+            SqlConnection conn = new SqlConnection(myconnstrng);
+
+            try
+            {
+                //Sql Query to Insert Transaction detais
+                string sql = "UPDATE tbl_transaction_detail set product_id = "+ td.product_id + ", transaction_id = "+ td.transastion_id  + ", rate = "+ td.rate + ", qty = "+ td.qty + ", discount = "+ td.discount + ", total = "+ td.total + ", dea_cust_id = "+ td.dea_cust_id + ", added_date = '"+ td.added_date.ToString("MM/dd/yyyy HH:mm:ss.fff") + "', added_by = '"+ td.added_by + "' WHERE id = "+ 2 +"";
+
+                //Passing the value to the SQL Query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                ////Passing the values using cmd
+                //cmd.Parameters.AddWithValue("@product_id", );
+                //cmd.Parameters.AddWithValue("@transaction_id", );
+                //cmd.Parameters.AddWithValue("@rate", );
+                //cmd.Parameters.AddWithValue("@qty", );
+                //cmd.Parameters.AddWithValue("@discount", );
+                //cmd.Parameters.AddWithValue("@total", );
+                //cmd.Parameters.AddWithValue("@dea_cust_id", );
+                //cmd.Parameters.AddWithValue("@added_date", );
+                //cmd.Parameters.AddWithValue("@added_by", );
+
+                //Open Database connection
+                conn.Open();
+
+                //declare the int variable and execute the query
+                int rows = cmd.ExecuteNonQuery();
+
+                if (rows > 0)
+                {
+                    //Query Executed Successfully
+                    isSuccess = true;
+                }
+                else
+                {
+                    //FAiled to Execute Query
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                //Close Database Connection
+                conn.Close();
+            }
+            return isSuccess;
+        }
+        #endregion
     }
 }

@@ -33,6 +33,7 @@
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.lblTop = new System.Windows.Forms.Label();
             this.pnlDeaCust = new System.Windows.Forms.Panel();
+            this.cmbItemName = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,7 +44,8 @@
             this.lblQuantity = new System.Windows.Forms.Label();
             this.TxtQty = new System.Windows.Forms.TextBox();
             this.pnlCalculation = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -74,7 +76,6 @@
             this.lblBillDate = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblDeaCustTitle = new System.Windows.Forms.Label();
-            this.cmbItemName = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.pnlDeaCust.SuspendLayout();
@@ -133,6 +134,17 @@
             this.pnlDeaCust.Name = "pnlDeaCust";
             this.pnlDeaCust.Size = new System.Drawing.Size(955, 459);
             this.pnlDeaCust.TabIndex = 3;
+            // 
+            // cmbItemName
+            // 
+            this.cmbItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbItemName.FormattingEnabled = true;
+            this.cmbItemName.Location = new System.Drawing.Point(65, 88);
+            this.cmbItemName.Name = "cmbItemName";
+            this.cmbItemName.Size = new System.Drawing.Size(153, 21);
+            this.cmbItemName.TabIndex = 8;
+            this.cmbItemName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbItemName_KeyDown);
             // 
             // label6
             // 
@@ -236,7 +248,8 @@
             // 
             // pnlCalculation
             // 
-            this.pnlCalculation.Controls.Add(this.button4);
+            this.pnlCalculation.Controls.Add(this.btnReturn);
+            this.pnlCalculation.Controls.Add(this.btnCancel);
             this.pnlCalculation.Controls.Add(this.button3);
             this.pnlCalculation.Controls.Add(this.button2);
             this.pnlCalculation.Controls.Add(this.button1);
@@ -266,17 +279,32 @@
             this.pnlCalculation.Size = new System.Drawing.Size(383, 331);
             this.pnlCalculation.TabIndex = 6;
             // 
-            // button4
+            // btnReturn
             // 
-            this.button4.BackColor = System.Drawing.Color.Teal;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(167, 280);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(70, 40);
-            this.button4.TabIndex = 25;
-            this.button4.Text = "Save";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnReturn.BackColor = System.Drawing.Color.Teal;
+            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReturn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturn.Location = new System.Drawing.Point(91, 280);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(70, 40);
+            this.btnReturn.TabIndex = 26;
+            this.btnReturn.Text = "Print";
+            this.btnReturn.UseVisualStyleBackColor = false;
+            this.btnReturn.Visible = false;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.Teal;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(167, 280);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(70, 40);
+            this.btnCancel.TabIndex = 25;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // button3
             // 
@@ -457,9 +485,9 @@
             this.lblReturnAmount.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReturnAmount.Location = new System.Drawing.Point(17, 250);
             this.lblReturnAmount.Name = "lblReturnAmount";
-            this.lblReturnAmount.Size = new System.Drawing.Size(95, 17);
+            this.lblReturnAmount.Size = new System.Drawing.Size(52, 17);
             this.lblReturnAmount.TabIndex = 6;
-            this.lblReturnAmount.Text = "Return Amount";
+            this.lblReturnAmount.Text = "Balance";
             // 
             // lblPaidAmount
             // 
@@ -548,6 +576,7 @@
             this.txtSearchProduct.TabIndex = 7;
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.txtSearchProduct_TextChanged);
             this.txtSearchProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchProduct_KeyDown);
+            this.txtSearchProduct.Leave += new System.EventHandler(this.txtSearchProduct_Leave);
             // 
             // lblBillDate
             // 
@@ -578,17 +607,6 @@
             this.lblDeaCustTitle.Size = new System.Drawing.Size(185, 17);
             this.lblDeaCustTitle.TabIndex = 0;
             this.lblDeaCustTitle.Text = "Dealer and Customer Details";
-            // 
-            // cmbItemName
-            // 
-            this.cmbItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbItemName.FormattingEnabled = true;
-            this.cmbItemName.Location = new System.Drawing.Point(65, 88);
-            this.cmbItemName.Name = "cmbItemName";
-            this.cmbItemName.Size = new System.Drawing.Size(153, 21);
-            this.cmbItemName.TabIndex = 8;
-            this.cmbItemName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbItemName_KeyDown);
             // 
             // frmPurchaseAndSales
             // 
@@ -622,7 +640,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBoxClose;
-        private System.Windows.Forms.Label lblTop;
         private System.Windows.Forms.Panel pnlDeaCust;
         private System.Windows.Forms.Label lblBillDate;
         private System.Windows.Forms.Label lblName;
@@ -648,7 +665,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
         public System.Windows.Forms.DateTimePicker dtpBillDate;
         public System.Windows.Forms.TextBox txtReturnAmount;
         public System.Windows.Forms.TextBox txtCash;
@@ -659,12 +675,15 @@
         public System.Windows.Forms.TextBox txtChequeNo;
         public System.Windows.Forms.TextBox TxtQty;
         public System.Windows.Forms.DataGridView dgvAddedProducts;
-        private System.Windows.Forms.TextBox txtSearchProduct;
         private System.Windows.Forms.TextBox txtDiscount;
         private System.Windows.Forms.TextBox txtVat;
         private System.Windows.Forms.TextBox txtSubTotal;
         public System.Windows.Forms.TextBox txtGrandTotal;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.ComboBox cmbItemName;
+        public System.Windows.Forms.TextBox txtSearchProduct;
+        private System.Windows.Forms.Button btnReturn;
+        public System.Windows.Forms.Button btnCancel;
+        public System.Windows.Forms.Label lblTop;
     }
 }

@@ -33,6 +33,7 @@
             this.salesFormsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dealerAndCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblSHead = new System.Windows.Forms.Label();
             this.lblAppFName = new System.Windows.Forms.Label();
             this.lblLoggedInUser = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.lblFooter = new System.Windows.Forms.Label();
             this.lblLName = new System.Windows.Forms.Label();
-            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripTop.SuspendLayout();
             this.pnlFooter.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +86,13 @@
             this.dealerAndCustomerToolStripMenuItem.Size = new System.Drawing.Size(130, 20);
             this.dealerAndCustomerToolStripMenuItem.Text = "Dealer and Customer";
             this.dealerAndCustomerToolStripMenuItem.Click += new System.EventHandler(this.dealerAndCustomerToolStripMenuItem_Click);
+            // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.reportToolStripMenuItem.Text = "Report";
+            this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
             // 
             // lblSHead
             // 
@@ -158,12 +165,6 @@
             this.lblLName.Size = new System.Drawing.Size(75, 37);
             this.lblLName.TabIndex = 10;
             this.lblLName.Text = "RUU";
-            // 
-            // reportToolStripMenuItem
-            // 
-            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.reportToolStripMenuItem.Text = "Report";
             // 
             // frmUserDashboard
             // 

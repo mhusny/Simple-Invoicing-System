@@ -38,7 +38,7 @@ namespace AnyStore
             if (e.KeyCode == Keys.F9)
             {
                 salesFormsToolStripMenuItem_Click(sender, e);
-            }  
+            }
         }
 
         private void dealerAndCustomerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,14 +61,20 @@ namespace AnyStore
             //Set the value to transacionType method to sales
             transactionType = "Sales";
             frmPurchaseAndSales sales = new frmPurchaseAndSales();
-            sales.Show();
-            
+            sales.ShowDialog();
+            sales.transactionID = -1;
         }
 
         private void inventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmInventory inventory = new frmInventory();
             inventory.Show();
+        }
+
+        private void reportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTransactions transaction = new frmTransactions();
+            transaction.Show();
         }
     }
 }

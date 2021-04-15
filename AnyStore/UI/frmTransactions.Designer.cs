@@ -108,7 +108,7 @@
             // 
             this.lblTransactionType.AutoSize = true;
             this.lblTransactionType.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTransactionType.Location = new System.Drawing.Point(520, 70);
+            this.lblTransactionType.Location = new System.Drawing.Point(476, 63);
             this.lblTransactionType.Name = "lblTransactionType";
             this.lblTransactionType.Size = new System.Drawing.Size(105, 17);
             this.lblTransactionType.TabIndex = 4;
@@ -121,7 +121,7 @@
             this.cmbTransactionType.Items.AddRange(new object[] {
             "Purchase",
             "Sales"});
-            this.cmbTransactionType.Location = new System.Drawing.Point(523, 90);
+            this.cmbTransactionType.Location = new System.Drawing.Point(479, 83);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(102, 25);
             this.cmbTransactionType.TabIndex = 5;

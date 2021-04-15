@@ -82,18 +82,25 @@ namespace AnyStore.UI
 
             frmPurchaseAndSales fsales = new frmPurchaseAndSales();
             fsales.Show();
-
-            foreach (DataRow dr in tr.Tables[0].Rows)
-            {
-                //Add product to the dAta Grid View
-                transactionDT.Rows.Add(dr[32], dr["description"], dr["rate"], dr["qty"], dr["discount1"], dr["total"]);
-                //Show in DAta Grid View
-                fsales.dgvAddedProducts.DataSource = transactionDT;
-            }
+            fsales.transactionID = id;
+            fsales.btnCancel.Visible = true;
+            fsales.lblTop.Text = dgvTransactions.Rows[e.RowIndex].Cells[2].Value.ToString();
 
             fsales.cmbCustomer.Text = tr.Tables[0].Rows[0]["name"].ToString();
             fsales.dtpBillDate.Value = DateTime.Parse(tr.Tables[0].Rows[0]["transaction_date"].ToString());
             fsales.txtInvoiceNo.Text = tr.Tables[0].Rows[0]["invoice_no"].ToString();
+
+            foreach (DataRow dr in tr.Tables[0].Rows)
+            {
+                //fsales.addItemToGrid(dr[32].ToString());
+                fsales.transactionDT.Rows.Add(dr[32], dr["description"], dr["rate"], dr["qty"], dr["discount1"], dr["total"]);
+                ////Add product to the dAta Grid View
+                //transactionDT.Rows.Add(dr[32], dr["description"], dr["rate"], dr["qty"], dr["discount1"], dr["total"]);
+                ////Show in DAta Grid View
+                fsales.dgvAddedProducts.DataSource = fsales.transactionDT;
+            }
+
+            fsales.CalcTot();
 
             if (double.Parse(tr.Tables[0].Rows[0]["card"].ToString()) > 0)
             {

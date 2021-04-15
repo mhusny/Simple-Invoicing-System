@@ -17,6 +17,7 @@ namespace AnyStore.UI
 {
     public partial class frmPurchaseAndSales : Form
     {
+        public int transactionID;
         public string Code;
         public string Description;
         public decimal Rate;
@@ -39,7 +40,7 @@ namespace AnyStore.UI
         transactionDAL tDAL = new transactionDAL();
         transactionDetailDAL tdDAL = new transactionDetailDAL();
 
-        DataTable transactionDT = new DataTable();
+        public DataTable transactionDT = new DataTable();
 
         private void frmPurchaseAndSales_Load(object sender, EventArgs e)
         {
@@ -74,7 +75,7 @@ namespace AnyStore.UI
             //Write the code to get the details and set the value on text boxes
             //DeaCustBLL dc = dcDAL.GetDealerCustomerForTransaction();
 
-            txtInvoiceNo.Text = tDAL.GetNextInvoiceNo().ToString();
+            txtInvoiceNo.Text = tDAL.GetNextInvoiceNo(type).ToString();
 
             DataSet ds =  dcDAL.GetDealerCustomerForTransaction();
             //Now transfer or set the value from DeCustBLL to textboxes
@@ -88,6 +89,17 @@ namespace AnyStore.UI
             cmbItemName.DataSource = items;
             cmbItemName.ValueMember = "name";
             cmbItemName.DisplayMember = "description";
+
+
+            //foreach (DataGridViewRow row in dgvAddedProducts.Rows)
+            //{
+            //    transactionDT.Rows.Add(row.Cells[0].Value, row.Cells[1].Value, row.Cells[2].Value, row.Cells[3].Value, row.Cells[4].Value, row.Cells[5].Value);
+            //    //foreach (DataGridViewCell cell in row.Cells)
+            //    //{
+            //    //    transactionDT.Rows[transactionDT.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+            //    //}
+
+            //}
         }
 
         private void KeyEvent(object sender, KeyEventArgs e) //Keyup Event 
@@ -120,7 +132,7 @@ namespace AnyStore.UI
 
         }
 
-        private void txtSearchProduct_TextChanged(object sender, EventArgs e)
+        public void txtSearchProduct_TextChanged(object sender, EventArgs e)
         {
             ////Get the keyword from productsearch textbox
             //string keyword = txtSearchProduct.Text;
@@ -277,14 +289,10 @@ namespace AnyStore.UI
         private void btnSave_Click(object sender, EventArgs e)
         {
             //validation
-            if (decimal.Parse("0" + txtCheque.Text) > 0 && txtChequeNo.Text.Length <2 )
+            if (decimal.Parse("0" + txtCheque.Text) > 0 && txtChequeNo.Text.Length < 2)
             {
                 MessageBox.Show("Please enter a cheque no.");
             }
-
-            //to do cancell bills
-            //to do open bills
-            //to do edit bills
 
             //Get the Values from PurchaseSales Form First
             transactionsBLL transaction = new transactionsBLL();
@@ -296,10 +304,10 @@ namespace AnyStore.UI
             string deaCustName = cmbCustomer.Text;
             DeaCustBLL dc = dcDAL.GetDeaCustIDFromName(deaCustName);
 
-            //transaction.invoice_no = decimal.Parse(txtInvoiceNo.Text);
-            transaction.invoice_no = decimal.Parse(tDAL.GetNextInvoiceNo().ToString());
+            transaction.invoice_no = decimal.Parse(txtInvoiceNo.Text);
+            //transaction.invoice_no = decimal.Parse(tDAL.GetNextInvoiceNo(transaction.type).ToString());
             transaction.dea_cust_id = dc.id;
-            transaction.grandTotal = Math.Round(decimal.Parse("0" + txtGrandTotal.Text),2);
+            transaction.grandTotal = Math.Round(decimal.Parse("0" + txtGrandTotal.Text), 2);
             transaction.transaction_date = dtpBillDate.Value;
             transaction.tax = decimal.Parse("0" + txtVat.Text);
             transaction.discount = decimal.Parse("0" + txtDiscount.Text);
@@ -326,7 +334,7 @@ namespace AnyStore.UI
                 bool w = tDAL.Insert_Transaction(transaction, out transactionID);
 
                 //Use for loop to insert Transaction Details
-                for(int i=0;i<transactionDT.Rows.Count;i++)
+                for (int i = 0; i < transactionDT.Rows.Count; i++)
                 {
                     //Get all the details of the product
                     transactionDetailBLL transactionDetail = new transactionDetailBLL();
@@ -339,7 +347,7 @@ namespace AnyStore.UI
                     transactionDetail.rate = decimal.Parse(transactionDT.Rows[i][2].ToString());
                     transactionDetail.qty = decimal.Parse(transactionDT.Rows[i][3].ToString());
                     transactionDetail.discount = decimal.Parse(transactionDT.Rows[i][4].ToString());
-                    transactionDetail.total = Math.Round(decimal.Parse(transactionDT.Rows[i][5].ToString()),2);
+                    transactionDetail.total = Math.Round(decimal.Parse(transactionDT.Rows[i][5].ToString()), 2);
                     transactionDetail.dea_cust_id = dc.id;
                     transactionDetail.added_date = DateTime.Now;
                     transactionDetail.added_by = u.id;
@@ -348,13 +356,13 @@ namespace AnyStore.UI
                     string transactionType = lblTop.Text;
 
                     //Lets check whether we are on Purchase or Sales
-                    bool x=false;
-                    if(transactionType=="Purchase")
+                    bool x = false;
+                    if (transactionType == "Purchase")
                     {
                         //Increase the Product
                         x = pDAL.IncreaseProduct(transactionDetail.product_id, transactionDetail.qty);
                     }
-                    else if(transactionType=="Sales")
+                    else if (transactionType == "Sales")
                     {
                         //Decrease the Product Quntiyt
                         x = pDAL.DecreaseProduct(transactionDetail.product_id, transactionDetail.qty);
@@ -365,7 +373,7 @@ namespace AnyStore.UI
                     success = w && x && y;
 
                     //tDAL.IncrementInvNo(decimal.Parse(tDAL.GetNextInvoiceNo().ToString()));
-                    tDAL.IncrementInvNo(decimal.Parse(txtInvoiceNo.Text));
+                    tDAL.UpdateInvNo(decimal.Parse(txtInvoiceNo.Text), transactionType);
                 }
                 //update grand total
                 if (success == true)
@@ -426,7 +434,7 @@ namespace AnyStore.UI
             }
         }
 
-        public void txtSearchProduct_KeyDown(object sender, KeyEventArgs e)
+        private void txtSearchProduct_KeyDown(object sender, KeyEventArgs e)
         {
             //Get the keyword from productsearch textbox
             string keyword = "";
@@ -435,12 +443,12 @@ namespace AnyStore.UI
                 if (txtSearchProduct.Text.Length > 0)
                 {
                     keyword = txtSearchProduct.Text;
-                    cmbItemName.Text = "";
+                    //cmbItemName.Text = "";
                 }
                 else if (cmbItemName.Text.Length > 0)
                 {
                     keyword = cmbItemName.SelectedValue.ToString();
-                    txtSearchProduct.Text = "";
+                    //txtSearchProduct.Text = "";
                 }
             }
             catch (Exception)
@@ -455,59 +463,75 @@ namespace AnyStore.UI
                 TxtQty.Text = "";
                 return;
             }
-
+            
             if (e.KeyCode == Keys.Enter)
             {
-                //Search the product and display on respective textboxes
-                var p = pDAL.GetProductsForTransaction(keyword);
+                addItemToGrid(keyword);
+            }
+        }
 
-                if (p.Count == 1)
+        public void addItemToGrid(string keyword)
+        {
+            //Search the product and display on respective textboxes
+            var p = pDAL.GetProductsForTransaction(keyword);
+
+            if (p.Count == 1)
+            {
+                Code = p[0].name.ToString();
+                Description = p[0].description.ToString();
+                Rate = decimal.Parse(p[0].rate.ToString());
+                Qty = 1;
+
+
+                decimal Total = Rate * Qty; //Total=RatexQty
+                int added = -1;
+
+
+
+
+                for (int i = 0; i < dgvAddedProducts.Rows.Count - 1; i++)
                 {
-                    Code = p[0].name.ToString();
-                    Description = p[0].description.ToString();
-                    Rate = decimal.Parse(p[0].rate.ToString());
-                    Qty = decimal.Parse(TxtQty.Text);
-                    
-
-                    decimal Total = Rate * Qty; //Total=RatexQty
-                    int added = -1;
-
-                    for (int i = 0; i < dgvAddedProducts.Rows.Count - 1; i++)
-                    {
-                        if (Code == dgvAddedProducts.Rows[i].Cells["code"].Value.ToString())
+                    if (Code == dgvAddedProducts.Rows[i].Cells["code"].Value.ToString())
                         added = i;
-                    }
-
-                    if (added >= 0)
-                    {
-                        dgvAddedProducts.Rows[added].Cells["Quantity"].Value = decimal.Parse(dgvAddedProducts.Rows[added].Cells["Quantity"].Value.ToString()) + 1;
-                    }
-                    else
-                    {
-                        //Add product to the dAta Grid View
-                        transactionDT.Rows.Add(Code, Description, Rate, Qty, Discount, Total);
-                        //Show in DAta Grid View
-                        dgvAddedProducts.DataSource = transactionDT;
-                    }
-
-                    CalcTot();
-
-                    ////Display the Subtotal in textbox
-                    ////Get the subtotal value from textbox
-                    //decimal subTotal = decimal.Parse(txtSubTotal.Text);
-                    //subTotal = subTotal + Total;
-                    
-                    ////Display the Subtotal in textbox
-                    //txtSubTotal.Text = subTotal.ToString();
-                    
-                    //Clear the Textboxes
-                    txtSearchProduct.Text = "";
-                    cmbItemName.Text = "";
-                    //txtProductName.Text = "";
-                    //txtInventory.Text = "0.00";
-                    //txtRate.Text = "0.00";
-                    TxtQty.Text = "0.00";
                 }
+
+                if (added >= 0) //if item is added increase the qty
+                {
+                    dgvAddedProducts.Rows[added].Cells["Quantity"].Value = decimal.Parse(dgvAddedProducts.Rows[added].Cells["Quantity"].Value.ToString()) + 1;
+                }
+                else
+                {
+                    //Add product to the dAta Grid View
+                    transactionDT.Rows.Add(Code, Description, Rate, Qty, Discount, Total);
+                    //Show in DAta Grid View
+                    dgvAddedProducts.DataSource = transactionDT;
+                }
+
+
+                dgvAddedProducts.Columns["Code"].Width = 50;
+                dgvAddedProducts.Columns["Product Name"].Width = 250;
+                //dgvAddedProducts.Columns["Rate"].
+                //dgvAddedProducts.Columns["Quantity"].Width
+                //dgvAddedProducts.Columns["Discount"].Width
+                //dgvAddedProducts.Columns["Total"].Width
+
+                CalcTot();
+
+                ////Display the Subtotal in textbox
+                ////Get the subtotal value from textbox
+                //decimal subTotal = decimal.Parse(txtSubTotal.Text);
+                //subTotal = subTotal + Total;
+
+                ////Display the Subtotal in textbox
+                //txtSubTotal.Text = subTotal.ToString();
+
+                //Clear the Textboxes
+                txtSearchProduct.Text = "";
+                cmbItemName.Text = "";
+                //txtProductName.Text = "";
+                //txtInventory.Text = "0.00";
+                //txtRate.Text = "0.00";
+                TxtQty.Text = "0.00";
             }
         }
 
@@ -559,7 +583,7 @@ namespace AnyStore.UI
             }
         }
 
-        private void CalcTot()
+        public void CalcTot()
         {
             if (dgvAddedProducts.Rows.Count > 0)
             {
@@ -583,6 +607,7 @@ namespace AnyStore.UI
 
         private void dgvAddedProducts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            //toto not only edit quantity
             if (dgvAddedProducts.Columns[e.ColumnIndex].Name == "Quantity")
             { 
                 var Rate = decimal.Parse(dgvAddedProducts.Rows[e.RowIndex].Cells["Rate"].Value.ToString());
@@ -652,6 +677,170 @@ namespace AnyStore.UI
         private void cmbItemName_KeyDown(object sender, KeyEventArgs e)
         {
             txtSearchProduct_KeyDown(sender, e);
+        }
+
+        private void txtSearchProduct_Leave(object sender, EventArgs e)
+        {
+            txtSearchProduct.Text = "";
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            //validation
+            if (decimal.Parse("0" + txtCheque.Text) > 0 && txtChequeNo.Text.Length < 2)
+            {
+                MessageBox.Show("Please enter a cheque no.");
+            }
+
+            //to do cancell bills
+
+            //Get the Values from PurchaseSales Form First
+            transactionsBLL transaction = new transactionsBLL();
+
+            
+            if (lblTop.Text == "Sales")
+            {
+                transaction.type = "CRN";
+            }
+            else if (lblTop.Text == "Purchase")
+            {
+                transaction.type = "RTS";
+            }
+
+            //Get the ID of Dealer or Customer Here
+            //Lets get name of the dealer or customer first
+            string deaCustName = cmbCustomer.Text;
+            DeaCustBLL dc = dcDAL.GetDeaCustIDFromName(deaCustName);
+
+            //transaction.invoice_no = decimal.Parse(txtInvoiceNo.Text);
+            transaction.invoice_no = decimal.Parse(tDAL.GetNextInvoiceNo(transaction.type).ToString());
+            transaction.dea_cust_id = dc.id;
+            transaction.grandTotal = Math.Round(decimal.Parse("0" + txtGrandTotal.Text), 2);
+            transaction.transaction_date = dtpBillDate.Value;
+            transaction.tax = decimal.Parse("0" + txtVat.Text);
+            transaction.discount = decimal.Parse("0" + txtDiscount.Text);
+            transaction.cash = decimal.Parse("0" + txtCash.Text);
+            transaction.card = decimal.Parse("0" + txtCard.Text);
+            transaction.cheque = decimal.Parse("0" + txtCheque.Text);
+            transaction.cheque_no = decimal.Parse("0" + txtChequeNo.Text);
+
+            //Get the Username of Logged in user
+            string username = frmLogin.loggedIn;
+            userBLL u = uDAL.GetIDFromUsername(username);
+
+            transaction.added_by = u.id;
+            transaction.transactionDetails = transactionDT;
+
+            //Lets Create a Boolean Variable and set its value to false
+            bool success = false;
+
+            //Actual Code to Insert Transaction And Transaction Details
+            using (TransactionScope scope = new TransactionScope())
+            {
+                int transactionID = -1;
+                //Create aboolean value and insert transaction 
+                bool w = tDAL.Insert_Transaction(transaction, out transactionID);
+
+                //Use for loop to insert Transaction Details
+                for (int i = 0; i < transactionDT.Rows.Count; i++)
+                {
+                    //Get all the details of the product
+                    transactionDetailBLL transactionDetail = new transactionDetailBLL();
+                    //Get the Product name and convert it to id
+                    string ProductName = transactionDT.Rows[i][0].ToString();
+                    productsBLL p = pDAL.GetProductIDFromName(ProductName);
+
+                    transactionDetail.transastion_id = transactionID;
+                    transactionDetail.product_id = p.id;
+                    transactionDetail.rate = decimal.Parse(transactionDT.Rows[i][2].ToString());
+                    transactionDetail.qty = decimal.Parse(transactionDT.Rows[i][3].ToString());
+                    transactionDetail.discount = decimal.Parse(transactionDT.Rows[i][4].ToString());
+                    transactionDetail.total = Math.Round(decimal.Parse(transactionDT.Rows[i][5].ToString()), 2);
+                    transactionDetail.dea_cust_id = dc.id;
+                    transactionDetail.added_date = DateTime.Now;
+                    transactionDetail.added_by = u.id;
+
+                    //Here Increase or Decrease Product Quantity based on Purchase or sales
+                    string transactionType = lblTop.Text;
+
+                    //Lets check whether we are on Purchase or Sales
+                    bool x = false;
+                    if (transactionType == "Purchase")
+                    {
+                        //Decrease the Product coz RTS
+                        x = pDAL.DecreaseProduct(transactionDetail.product_id, transactionDetail.qty);
+                    }
+                    else if (transactionType == "Sales")
+                    {
+                        //Increase the Product Quntiyt coz CRN
+                        x = pDAL.IncreaseProduct(transactionDetail.product_id, transactionDetail.qty);
+                    }
+
+                    //Insert Transaction Details inside the database
+                    bool y = tdDAL.InsertTransactionDetail(transactionDetail);
+                    success = w && x && y;
+
+                }
+
+                tDAL.UpdateInvNo(decimal.Parse(tDAL.GetNextInvoiceNo(transaction.type).ToString()), transaction.type);
+                //tDAL.UpdateInvNo(decimal.Parse(txtInvoiceNo.Text), transaction.type);
+                //update grand total
+                if (success == true)
+                {
+                    ////////////frmReport r = new frmReport();
+                    ////////////r.DocId = 1;
+                    ////////////r.TrID = transactionID;
+                    ////////////r.ShowDialog();
+                    //Transaction Complete
+                    scope.Complete();
+
+                    //Code to Print Bill
+
+                    //to do print bills
+
+
+                    //DGVPrinter printer = new DGVPrinter();
+
+                    //printer.Title = "\r\n\r\n\r\n ANYSTORE PVT. LTD. \r\n\r\n";
+                    //printer.SubTitle = "Kathmandu, Nepal \r\n Phone: 01-045XXXX \r\n\r\n";
+                    //printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+                    //printer.PageNumbers = true;
+                    //printer.PageNumberInHeader = false;
+                    //printer.PorportionalColumns = true;
+                    //printer.HeaderCellAlignment = StringAlignment.Near;
+                    //printer.Footer = "Discount: " + txtDiscount.Text + "% \r\n" + "VAT: " + txtVat.Text + "% \r\n" + "Grand Total: " + txtGrandTotal.Text + "\r\n\r\n" + "Thank you for doing business with us.";
+                    //printer.FooterSpacing = 15;
+                    //printer.PrintDataGridView(dgvAddedProducts);
+
+
+                    //MessageBox.Show("Transaction Completed Sucessfully");
+                    //Celar the Data Grid View and Clear all the TExtboxes
+                    dgvAddedProducts.DataSource = null;
+                    dgvAddedProducts.Rows.Clear();
+                    transactionDT.Rows.Clear();
+
+
+
+                    txtSearchProduct.Text = "";
+                    cmbItemName.Text = "";
+                    TxtQty.Text = "0";
+                    txtSubTotal.Text = "0";
+                    txtDiscount.Text = "0";
+                    txtVat.Text = "0";
+                    txtGrandTotal.Text = "0";
+                    txtCash.Text = "0";
+                    txtCard.Text = "0";
+                    txtCheque.Text = "0";
+                    txtChequeNo.Text = "0";
+                    txtReturnAmount.Text = "0";
+                    txtInvoiceNo.Text = (decimal.Parse(txtInvoiceNo.Text) + 1).ToString();
+                }
+                else
+                {
+                    //Transaction Failed
+                    MessageBox.Show("Transaction Failed");
+                }
+            }
         }
     }
 }

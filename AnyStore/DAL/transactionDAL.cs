@@ -31,6 +31,8 @@ namespace AnyStore.DAL
                 //SQL Query to Insert Transactions
                 string sql = "INSERT INTO tbl_transactions (invoice_no, type, dea_cust_id, grandTotal, transaction_date, tax, discount, added_by, cash, card, cheque, cheque_no) VALUES (@invoice_no, @type, @dea_cust_id, @grandTotal, @transaction_date, @tax, @discount, @added_by, @cash, @card, @cheque, @cheque_no); SELECT @@IDENTITY;";
 
+
+
                 //Sql Commandto pass the value in sql query
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
@@ -68,6 +70,72 @@ namespace AnyStore.DAL
                 }
             }
             catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                //Close the connection 
+                conn.Close();
+            }
+
+            return isSuccess;
+        }
+        #endregion
+
+        #region Update Transaction Method
+        public bool Update_Transaction(transactionsBLL t, out int transactionID)
+        {
+            //Create a boolean value and set its default value to false
+            bool isSuccess = false;
+            //Set the out transactionID value to negative 1 i.e. -1
+            transactionID = t.id;
+            //Create a SqlConnection first
+            SqlConnection conn = new SqlConnection(myconnstrng);
+            try
+            {
+                //SQL Query to Insert Transactions
+                string sql = "UPDATE tbl_transactions  SET invoice_no = '"+ t.invoice_no + "', type = 'Sales', dea_cust_id = " + t.dea_cust_id + ", grandTotal = " + t.grandTotal + ", transaction_date = '" + t.transaction_date.ToString("MM/dd/yyyy HH:mm:ss.fff") + "', tax = " + t.tax + ", discount =" + t.discount + ", added_by =  '" + t.added_by + "', cash = " + t.cash + ", card =  " + t.card + ", cheque = " + t.cheque + ", cheque_no = '" + t.cheque_no + "' WHERE id = " + t.id + "";
+
+
+
+                //Sql Commandto pass the value in sql query
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                //Passing the value to sql query using cmd
+                //cmd.Parameters.AddWithValue("@invoice_no", t.invoice_no);
+                //cmd.Parameters.AddWithValue("@type", t.type);
+                //cmd.Parameters.AddWithValue("@dea_cust_id", t.dea_cust_id);
+                //cmd.Parameters.AddWithValue("@grandTotal", t.grandTotal);
+                //cmd.Parameters.AddWithValue("@transaction_date", t.transaction_date);
+                //cmd.Parameters.AddWithValue("@tax", t.tax);
+                //cmd.Parameters.AddWithValue("@discount", t.discount);
+                //cmd.Parameters.AddWithValue("@added_by", t.added_by);
+                //cmd.Parameters.AddWithValue("@cash", t.cash);
+                //cmd.Parameters.AddWithValue("@card", t.card);
+                //cmd.Parameters.AddWithValue("@cheque", t.cheque);
+                //cmd.Parameters.AddWithValue("@cheque_no", t.cheque_no);
+
+                //Open Database Connection
+                conn.Open();
+
+                //Execute the Query
+                object o = cmd.ExecuteNonQuery();
+
+                //If the query is executed successfully then the value will not be null else it will be null
+                if (o != null)
+                {
+                    //Query Executed Successfully
+                    //transactionID = int.Parse(o.ToString());
+                    isSuccess = true;
+                }
+                else
+                {
+                    //failed to execute query
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -241,7 +309,7 @@ namespace AnyStore.DAL
         #endregion
 
         #region METHOD TO GET NEXT INVOICE NO
-        public decimal GetNextInvoiceNo()
+        public decimal GetNextInvoiceNo(string Doctype)
         {
             //Create SQL Connection
             SqlConnection conn = new SqlConnection(myconnstrng);
@@ -272,12 +340,30 @@ namespace AnyStore.DAL
                 conn.Close();
             }
 
-            return decimal.Parse(dt.Rows[0][0].ToString()) + 1;
+            decimal no = 0;
+            if (Doctype == "Sales")
+            {
+                no = decimal.Parse(dt.Rows[0][0].ToString()) + 1;
+            }
+            else if (Doctype == "Purchase")
+            {
+                no = decimal.Parse(dt.Rows[0][1].ToString()) + 1;
+            }
+            else if (Doctype == "CRN")
+            {
+                no = decimal.Parse(dt.Rows[0][2].ToString()) + 1;
+            }
+            else if (Doctype == "RTS")
+            {
+                no = decimal.Parse(dt.Rows[0][3].ToString()) + 1;
+            }
+
+            return no;
         }
         #endregion
 
-        #region METHOD TO INCREMENT INVOICE NO
-        public bool IncrementInvNo(decimal inv_no)
+        #region METHOD TO UPDATE INVOICE NO
+        public bool UpdateInvNo(decimal inv_no, string doctype)
         {
             //Create a boolean value and set its default value to false
             bool isSuccess = false;
@@ -286,7 +372,26 @@ namespace AnyStore.DAL
             try
             {
                 //SQL Query to Insert Transactions
-                string sql = "DELETE FROM tbl_Parameter INSERT INTO tbl_Parameter ([Last Invoice No]) VALUES (@last_invoice_no)";
+                //string sql = "DELETE FROM tbl_Parameter INSERT INTO tbl_Parameter ([Last Invoice No]) VALUES (@last_invoice_no)";
+                string sql = "";
+
+                if (doctype == "Sales")
+                {
+                    sql = "UPDATE tbl_Parameter set [Last Invoice No] = @last_invoice_no";
+                }
+                else if (doctype == "Purchase")
+                {
+                    sql = "UPDATE tbl_Parameter set [Last PO No] = @last_invoice_no";
+                }
+                else if (doctype == "CRN")
+                {
+                    sql = "UPDATE tbl_Parameter set [Last CRN No] = @last_invoice_no";
+                }
+                else if (doctype == "RTS")
+                {
+                    sql = "UPDATE tbl_Parameter set [Last RTS No] = @last_invoice_no";
+                }
+
 
                 //Sql Commandto pass the value in sql query
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -298,7 +403,7 @@ namespace AnyStore.DAL
                 conn.Open();
 
                 //Execute the Query
-                object o = cmd.ExecuteScalar();
+                object o = cmd.ExecuteNonQuery();
 
                 //If the query is executed successfully then the value will not be null else it will be null
                 if (o != null)
