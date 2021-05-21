@@ -44,7 +44,7 @@ namespace AnyStore.UI
 
         private void frmReport_Load(object sender, EventArgs e)
         {
-            if (DocId == 1)
+            if (DocId == 1) // bill
             {
                 List<BLL.BillBLL> _List = new List<BLL.BillBLL>();
 
@@ -59,7 +59,7 @@ namespace AnyStore.UI
                         grandTotal = decimal.Parse(dr["grandTotal"].ToString()),
                         transaction_date = DateTime.Parse(dr["transaction_date"].ToString()),
                         name = dr["name"].ToString(),
-                        Pname = dr["Expr1"].ToString(),
+                        Pname = dr["name1"].ToString(),
                         description = dr["description"].ToString(),
                         discount = decimal.Parse(dr["discount"].ToString()),
                         total = decimal.Parse(dr["total"].ToString()),
@@ -75,7 +75,7 @@ namespace AnyStore.UI
                 crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             }
 
-            if (DocId == 2)
+            if (DocId == 2) // sales report
             {
                 List<BLL.transactionsBLL> _List = new List<BLL.transactionsBLL>();
 

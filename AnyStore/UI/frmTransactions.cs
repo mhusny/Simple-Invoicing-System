@@ -84,6 +84,7 @@ namespace AnyStore.UI
             fsales.Show();
             fsales.transactionID = id;
             fsales.btnCancel.Visible = true;
+            fsales.btnReturn.Visible = true;
             fsales.lblTop.Text = dgvTransactions.Rows[e.RowIndex].Cells[2].Value.ToString();
 
             fsales.cmbCustomer.Text = tr.Tables[0].Rows[0]["name"].ToString();

@@ -48,6 +48,10 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.txtQty = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNewQty = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -99,7 +103,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(12, 100);
+            this.lblName.Location = new System.Drawing.Point(12, 91);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(43, 17);
             this.lblName.TabIndex = 4;
@@ -109,7 +113,7 @@
             // 
             this.lblCategory.AutoSize = true;
             this.lblCategory.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategory.Location = new System.Drawing.Point(13, 142);
+            this.lblCategory.Location = new System.Drawing.Point(13, 122);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(61, 17);
             this.lblCategory.TabIndex = 5;
@@ -119,7 +123,7 @@
             // 
             this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(13, 186);
+            this.lblDescription.Location = new System.Drawing.Point(13, 153);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(74, 17);
             this.lblDescription.TabIndex = 6;
@@ -129,7 +133,7 @@
             // 
             this.lblRate.AutoSize = true;
             this.lblRate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRate.Location = new System.Drawing.Point(12, 302);
+            this.lblRate.Location = new System.Drawing.Point(12, 261);
             this.lblRate.Name = "lblRate";
             this.lblRate.Size = new System.Drawing.Size(34, 17);
             this.lblRate.TabIndex = 7;
@@ -147,7 +151,7 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(120, 100);
+            this.txtName.Location = new System.Drawing.Point(120, 91);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(224, 25);
             this.txtName.TabIndex = 9;
@@ -156,7 +160,7 @@
             // 
             this.cmbCategory.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(120, 142);
+            this.cmbCategory.Location = new System.Drawing.Point(120, 122);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(224, 25);
             this.cmbCategory.TabIndex = 10;
@@ -164,7 +168,7 @@
             // txtDescription
             // 
             this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(120, 186);
+            this.txtDescription.Location = new System.Drawing.Point(120, 153);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(224, 102);
@@ -173,7 +177,7 @@
             // txtRate
             // 
             this.txtRate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRate.Location = new System.Drawing.Point(120, 302);
+            this.txtRate.Location = new System.Drawing.Point(120, 261);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(224, 25);
             this.txtRate.TabIndex = 12;
@@ -246,12 +250,52 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // txtQty
+            // 
+            this.txtQty.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQty.Location = new System.Drawing.Point(120, 292);
+            this.txtQty.Name = "txtQty";
+            this.txtQty.Size = new System.Drawing.Size(105, 25);
+            this.txtQty.TabIndex = 20;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 292);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 17);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Qty";
+            // 
+            // txtNewQty
+            // 
+            this.txtNewQty.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewQty.Location = new System.Drawing.Point(120, 323);
+            this.txtNewQty.Name = "txtNewQty";
+            this.txtNewQty.Size = new System.Drawing.Size(105, 25);
+            this.txtNewQty.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 323);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 17);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "New Qty";
+            // 
             // frmProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(836, 420);
+            this.Controls.Add(this.txtNewQty);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtQty);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
@@ -304,5 +348,9 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.TextBox txtQty;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtNewQty;
+        private System.Windows.Forms.Label label2;
     }
 }

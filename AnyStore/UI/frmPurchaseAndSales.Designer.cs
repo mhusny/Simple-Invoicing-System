@@ -291,6 +291,7 @@
             this.btnReturn.Text = "Print";
             this.btnReturn.UseVisualStyleBackColor = false;
             this.btnReturn.Visible = false;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // btnCancel
             // 
@@ -301,7 +302,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 40);
             this.btnCancel.TabIndex = 25;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "Return";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -682,8 +683,8 @@
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.ComboBox cmbItemName;
         public System.Windows.Forms.TextBox txtSearchProduct;
-        private System.Windows.Forms.Button btnReturn;
         public System.Windows.Forms.Button btnCancel;
         public System.Windows.Forms.Label lblTop;
+        public System.Windows.Forms.Button btnReturn;
     }
 }

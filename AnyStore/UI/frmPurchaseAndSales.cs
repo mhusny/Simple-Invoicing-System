@@ -535,7 +535,8 @@ namespace AnyStore.UI
             }
         }
 
-        //todo to do adjust quantity
+        //todo to do adjust stock quantity
+
         private void dgvAddedProducts_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             CalcTot();
@@ -841,6 +842,14 @@ namespace AnyStore.UI
                     MessageBox.Show("Transaction Failed");
                 }
             }
+        }
+        
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            frmReport r = new frmReport();
+            r.DocId = 1;
+            r.TrID = transactionID;
+            r.ShowDialog();
         }
     }
 }
