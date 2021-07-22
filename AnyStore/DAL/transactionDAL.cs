@@ -357,6 +357,10 @@ namespace AnyStore.DAL
             {
                 no = decimal.Parse(dt.Rows[0][3].ToString()) + 1;
             }
+            else if (Doctype == "ADJIN" || Doctype == "ADJOUT")
+            {
+                no = decimal.Parse(dt.Rows[0][4].ToString()) + 1;
+            }
 
             return no;
         }
@@ -390,6 +394,10 @@ namespace AnyStore.DAL
                 else if (doctype == "RTS")
                 {
                     sql = "UPDATE tbl_Parameter set [Last RTS No] = @last_invoice_no";
+                }
+                else if (doctype == "ADJIN" || doctype == "ADJOUT")
+                {
+                    sql = "UPDATE tbl_Parameter set [Last ADJ No] = @last_invoice_no";
                 }
 
 

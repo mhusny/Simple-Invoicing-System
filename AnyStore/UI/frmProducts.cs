@@ -31,6 +31,7 @@ namespace AnyStore.UI
         productsDAL pdal = new productsDAL();
         userDAL udal = new userDAL();
         transactionDAL tDAL = new transactionDAL();
+        transactionDetailDAL tdDAL = new transactionDetailDAL();
 
         public DataTable transactionDT = new DataTable();
 
@@ -119,14 +120,24 @@ namespace AnyStore.UI
             //Update Quantity----------------------------------------------------
             transactionsBLL transaction = new transactionsBLL();
 
-            
+
             //Get the ID of Dealer or Customer Here
             //Lets get name of the dealer or customer first
             //string deaCustName = cmbCustomer.Text;
             //DeaCustBLL dc = dcDAL.GetDeaCustIDFromName(deaCustName);
 
             //transaction.invoice_no = decimal.Parse(txtInvoiceNo.Text);
-            transaction.type = "ADJ";
+
+            if (Math.Round(decimal.Parse("0" + txtQty.Text) - decimal.Parse("0" + txtNewQty.Text), 2) < 0)
+            {
+                transaction.type = "ADJIN";
+            }
+            else
+            {
+                transaction.type = "ADJOUT";
+            }
+
+            
             transaction.invoice_no = 0;
             transaction.dea_cust_id = 0;
             transaction.grandTotal = Math.Round(decimal.Parse("0" + txtQty.Text) - decimal.Parse("0" + txtNewQty.Text), 2) * decimal.Parse("0" + txtRate.Text);
@@ -166,28 +177,28 @@ namespace AnyStore.UI
 
                     transactionDetail.transastion_id = transactionID;
                     transactionDetail.product_id = p.id;
-                    transactionDetail.rate = decimal.Parse(transactionDT.Rows[i][2].ToString());
-                    transactionDetail.qty = decimal.Parse(transactionDT.Rows[i][3].ToString());
-                    transactionDetail.discount = decimal.Parse(transactionDT.Rows[i][4].ToString());
-                    transactionDetail.total = Math.Round(decimal.Parse(transactionDT.Rows[i][5].ToString()), 2);
-                    transactionDetail.dea_cust_id = dc.id;
+                    transactionDetail.rate = decimal.Parse(txtRate.Text);
+                    transactionDetail.qty = Math.Round(decimal.Parse("0" + txtQty.Text) - decimal.Parse("0" + txtNewQty.Text), 2);
+                    transactionDetail.discount = 0;
+                    transactionDetail.total = Math.Round(decimal.Parse("0" + txtQty.Text) - decimal.Parse("0" + txtNewQty.Text), 2) * decimal.Parse("0" + txtRate.Text);
+                    transactionDetail.dea_cust_id = 0;
                     transactionDetail.added_date = DateTime.Now;
                     transactionDetail.added_by = u.id;
 
                     //Here Increase or Decrease Product Quantity based on Purchase or sales
                     string transactionType = lblTop.Text;
 
-                    //Lets check whether we are on Purchase or Sales
+                    //Lets check whether we are on ADJIN or ADJOUT
                     bool x = false;
-                    if (transactionType == "Purchase")
+                    if (transactionType == "ADJOUT")
                     {
                         //Decrease the Product coz RTS
-                        x = pDAL.DecreaseProduct(transactionDetail.product_id, transactionDetail.qty);
+                        x = pdal.DecreaseProduct(transactionDetail.product_id, transactionDetail.qty);
                     }
-                    else if (transactionType == "Sales")
+                    else if (transactionType == "ADJIN")
                     {
                         //Increase the Product Quntiyt coz CRN
-                        x = pDAL.IncreaseProduct(transactionDetail.product_id, transactionDetail.qty);
+                        x = pdal.IncreaseProduct(transactionDetail.product_id, transactionDetail.qty);
                     }
 
                     //Insert Transaction Details inside the database
@@ -229,25 +240,30 @@ namespace AnyStore.UI
 
                     //MessageBox.Show("Transaction Completed Sucessfully");
                     //Celar the Data Grid View and Clear all the TExtboxes
-                    dgvAddedProducts.DataSource = null;
-                    dgvAddedProducts.Rows.Clear();
+                    //dgvAddedProducts.DataSource = null;
+                    //dgvAddedProducts.Rows.Clear();
                     transactionDT.Rows.Clear();
 
 
 
-                    txtSearchProduct.Text = "";
-                    cmbItemName.Text = "";
-                    TxtQty.Text = "0";
-                    txtSubTotal.Text = "0";
-                    txtDiscount.Text = "0";
-                    txtVat.Text = "0";
-                    txtGrandTotal.Text = "0";
-                    txtCash.Text = "0";
-                    txtCard.Text = "0";
-                    txtCheque.Text = "0";
-                    txtChequeNo.Text = "0";
-                    txtReturnAmount.Text = "0";
-                    txtInvoiceNo.Text = (decimal.Parse(txtInvoiceNo.Text) + 1).ToString();
+                    //txtSearchProduct.Text = "";
+                    //cmbItemName.Text = "";
+                    txtQty.Text = txtNewQty.Text;
+                    txtNewQty.Text = "0";
+                    //txtDiscount.Text = "0";
+                    //txtVat.Text = "0";
+                    //txtGrandTotal.Text = "0";
+                    //txtCash.Text = "0";
+                    //txtCard.Text = "0";
+                    //txtCheque.Text = "0";
+                    //txtChequeNo.Text = "0";
+                    //txtReturnAmount.Text = "0";
+                    //txtInvoiceNo.Text = (decimal.Parse(txtInvoiceNo.Text) + 1).ToString();
+
+                    //Load all the Products in Data Grid View
+                    DataTable dt = pdal.Select();
+                    dgvProducts.DataSource = dt;
+
                 }
                 else
                 {
@@ -272,7 +288,7 @@ namespace AnyStore.UI
             p.added_by = usr.id;
 
             //Create a boolean variable to check if the product is updated or not
-            bool success = pdal.Update(p);
+            success = pdal.Update(p);
             //If the prouct is updated successfully then the value of success will be true else it will be false
             if(success==true)
             {
