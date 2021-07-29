@@ -108,7 +108,7 @@
             // 
             this.lblTransactionType.AutoSize = true;
             this.lblTransactionType.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTransactionType.Location = new System.Drawing.Point(476, 63);
+            this.lblTransactionType.Location = new System.Drawing.Point(436, 45);
             this.lblTransactionType.Name = "lblTransactionType";
             this.lblTransactionType.Size = new System.Drawing.Size(105, 17);
             this.lblTransactionType.TabIndex = 4;
@@ -120,8 +120,12 @@
             this.cmbTransactionType.FormattingEnabled = true;
             this.cmbTransactionType.Items.AddRange(new object[] {
             "Purchase",
-            "Sales"});
-            this.cmbTransactionType.Location = new System.Drawing.Point(479, 83);
+            "Sales",
+            "CRN",
+            "RTS",
+            "ADJIN",
+            "ADJOUT"});
+            this.cmbTransactionType.Location = new System.Drawing.Point(547, 42);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(102, 25);
             this.cmbTransactionType.TabIndex = 5;
@@ -130,7 +134,7 @@
             // btnAll
             // 
             this.btnAll.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAll.Location = new System.Drawing.Point(655, 117);
+            this.btnAll.Location = new System.Drawing.Point(720, 57);
             this.btnAll.Name = "btnAll";
             this.btnAll.Size = new System.Drawing.Size(77, 33);
             this.btnAll.TabIndex = 6;
@@ -181,16 +185,16 @@
             this.cmbGroupBy.Items.AddRange(new object[] {
             "Item",
             "Customer"});
-            this.cmbGroupBy.Location = new System.Drawing.Point(723, 55);
+            this.cmbGroupBy.Location = new System.Drawing.Point(547, 70);
             this.cmbGroupBy.Name = "cmbGroupBy";
-            this.cmbGroupBy.Size = new System.Drawing.Size(105, 25);
+            this.cmbGroupBy.Size = new System.Drawing.Size(102, 25);
             this.cmbGroupBy.TabIndex = 18;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(652, 55);
+            this.label2.Location = new System.Drawing.Point(436, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 17);
             this.label2.TabIndex = 17;
@@ -203,16 +207,16 @@
             this.cmbOrderBy.Items.AddRange(new object[] {
             "Item",
             "Customer"});
-            this.cmbOrderBy.Location = new System.Drawing.Point(723, 86);
+            this.cmbOrderBy.Location = new System.Drawing.Point(547, 98);
             this.cmbOrderBy.Name = "cmbOrderBy";
-            this.cmbOrderBy.Size = new System.Drawing.Size(105, 25);
+            this.cmbOrderBy.Size = new System.Drawing.Size(102, 25);
             this.cmbOrderBy.TabIndex = 20;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(652, 86);
+            this.label3.Location = new System.Drawing.Point(436, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 17);
             this.label3.TabIndex = 19;
@@ -297,7 +301,7 @@
             // btnPrint
             // 
             this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Location = new System.Drawing.Point(752, 117);
+            this.btnPrint.Location = new System.Drawing.Point(721, 93);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(76, 33);
             this.btnPrint.TabIndex = 29;

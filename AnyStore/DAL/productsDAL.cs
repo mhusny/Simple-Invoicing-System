@@ -315,7 +315,7 @@ namespace AnyStore.DAL
             try
             {
                 //SQL Query to Get id based on Name
-                string sql = "SELECT id FROM tbl_products WHERE name='" + ProductName + "'";
+                string sql = "SELECT id FROM tbl_products WHERE name ='" + ProductName + "'";
                 //Create the SQL Data Adapter to Execute the Query
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
 
@@ -483,6 +483,12 @@ namespace AnyStore.DAL
 
                 //Decrease the Product Quantity based on product sales
                 decimal NewQty = currentQty - Qty;
+
+                if (NewQty < 0)
+                {
+                    MessageBox.Show("Available Quantity " + currentQty + "");
+                    return false;
+                }
 
                 //Update Product in Database
                 success = UpdateQuantity(ProductID, NewQty);

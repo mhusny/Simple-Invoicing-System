@@ -77,7 +77,7 @@
             this.lblTop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTop.Location = new System.Drawing.Point(398, 5);
             this.lblTop.Name = "lblTop";
-            this.lblTop.Size = new System.Drawing.Size(100, 21);
+            this.lblTop.Size = new System.Drawing.Size(99, 21);
             this.lblTop.TabIndex = 0;
             this.lblTop.Text = "CATEGORIES";
             // 
@@ -139,7 +139,7 @@
             // 
             // btnADD
             // 
-            this.btnADD.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnADD.BackColor = System.Drawing.Color.Teal;
             this.btnADD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnADD.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnADD.Location = new System.Drawing.Point(232, 280);
@@ -152,7 +152,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.Chartreuse;
+            this.btnUpdate.BackColor = System.Drawing.Color.Teal;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.Location = new System.Drawing.Point(368, 280);
@@ -165,10 +165,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.DarkRed;
+            this.btnDelete.BackColor = System.Drawing.Color.Teal;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.ForeColor = System.Drawing.Color.Black;
             this.btnDelete.Location = new System.Drawing.Point(504, 280);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(130, 44);

@@ -378,10 +378,10 @@ namespace AnyStore.UI
                 //update grand total
                 if (success == true)
                 {
-                    ////////////frmReport r = new frmReport();
-                    ////////////r.DocId = 1;
-                    ////////////r.TrID = transactionID;
-                    ////////////r.ShowDialog();
+                    frmReport r = new frmReport();
+                    r.DocId = 1;
+                    r.TrID = transactionID;
+                    r.ShowDialog();
                     //Transaction Complete
                     scope.Complete();
 
