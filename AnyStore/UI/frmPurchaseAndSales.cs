@@ -19,6 +19,7 @@ namespace AnyStore.UI
     {
         public int transactionID;
         public string Code;
+        public string type;
         public string Description;
         public decimal Rate;
         public decimal Qty;
@@ -47,7 +48,7 @@ namespace AnyStore.UI
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
 
             //Get the transactionType value from frmUserDashboard
-            string type = frmUserDashboard.transactionType;
+            //string type = frmUserDashboard.transactionType;
             //Set the value on lblTop
             lblTop.Text = type;
 

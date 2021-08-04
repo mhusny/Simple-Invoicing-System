@@ -36,7 +36,9 @@
             this.productsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deealerAndCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.transactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PurchasetoolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.SalestoolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReportStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblLoggedInUser = new System.Windows.Forms.Label();
             this.lblSHead = new System.Windows.Forms.Label();
@@ -75,7 +77,9 @@
             this.productsToolStripMenuItem,
             this.deealerAndCustomerToolStripMenuItem,
             this.inventoryToolStripMenuItem,
-            this.transactionToolStripMenuItem});
+            this.PurchasetoolStripMenuItem2,
+            this.SalestoolStripMenuItem2,
+            this.ReportStripMenuItem2});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
             this.menuStripTop.Size = new System.Drawing.Size(1192, 24);
@@ -117,12 +121,26 @@
             this.inventoryToolStripMenuItem.Text = "Inventory";
             this.inventoryToolStripMenuItem.Click += new System.EventHandler(this.inventoryToolStripMenuItem_Click);
             // 
-            // transactionToolStripMenuItem
+            // PurchasetoolStripMenuItem2
             // 
-            this.transactionToolStripMenuItem.Name = "transactionToolStripMenuItem";
-            this.transactionToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.transactionToolStripMenuItem.Text = "Transaction";
-            this.transactionToolStripMenuItem.Click += new System.EventHandler(this.transactionToolStripMenuItem_Click);
+            this.PurchasetoolStripMenuItem2.Name = "PurchasetoolStripMenuItem2";
+            this.PurchasetoolStripMenuItem2.Size = new System.Drawing.Size(67, 20);
+            this.PurchasetoolStripMenuItem2.Text = "Purchase";
+            this.PurchasetoolStripMenuItem2.Click += new System.EventHandler(this.PurchasetoolStripMenuItem2_Click);
+            // 
+            // SalestoolStripMenuItem2
+            // 
+            this.SalestoolStripMenuItem2.Name = "SalestoolStripMenuItem2";
+            this.SalestoolStripMenuItem2.Size = new System.Drawing.Size(68, 20);
+            this.SalestoolStripMenuItem2.Text = "Sales (F9)";
+            this.SalestoolStripMenuItem2.Click += new System.EventHandler(this.SalestoolStripMenuItem2_Click);
+            // 
+            // ReportStripMenuItem2
+            // 
+            this.ReportStripMenuItem2.Name = "ReportStripMenuItem2";
+            this.ReportStripMenuItem2.Size = new System.Drawing.Size(54, 20);
+            this.ReportStripMenuItem2.Text = "Report";
+            this.ReportStripMenuItem2.Click += new System.EventHandler(this.ReportStripMenuItem2_Click);
             // 
             // lblUser
             // 
@@ -216,9 +234,11 @@
         private System.Windows.Forms.Label lblLoggedInUser;
         private System.Windows.Forms.Label lblSHead;
         private System.Windows.Forms.ToolStripMenuItem deealerAndCustomerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem transactionToolStripMenuItem;
         private System.Windows.Forms.Label lblLName;
         private System.Windows.Forms.Label lblAppFName;
+        private System.Windows.Forms.ToolStripMenuItem ReportStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem PurchasetoolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem SalestoolStripMenuItem2;
     }
 }
 

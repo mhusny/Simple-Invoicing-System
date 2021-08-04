@@ -18,6 +18,9 @@ namespace AnyStore
             InitializeComponent();
         }
 
+        //Set a public static method to specify whether the form is purchase or sales
+        //public static string transactionType;
+
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUsers user = new frmUsers();
@@ -34,6 +37,15 @@ namespace AnyStore
         private void frmAdminDashboard_Load(object sender, EventArgs e)
         {
             lblLoggedInUser.Text = frmLogin.loggedIn;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
+        }
+
+        private void KeyEvent(object sender, KeyEventArgs e) //Keyup Event 
+        {
+            if (e.KeyCode == Keys.F9)
+            {
+                SalestoolStripMenuItem2_Click(sender, e);
+            }
         }
 
         private void categoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,6 +76,29 @@ namespace AnyStore
         {
             frmInventory inventory = new frmInventory();
             inventory.Show();
+        }
+
+        private void ReportStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            frmTransactions transaction = new frmTransactions();
+            transaction.Show();
+        }
+
+        private void PurchasetoolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            //set value on transactionType static method
+            frmPurchaseAndSales purchase = new frmPurchaseAndSales();
+            purchase.type = "Purchase";
+            purchase.Show();
+        }
+
+        private void SalestoolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            //Set the value to transacionType method to sales
+            frmPurchaseAndSales sales = new frmPurchaseAndSales();
+            sales.type = "Sales";
+            sales.ShowDialog();
+            sales.transactionID = -1;
         }
     }
 }

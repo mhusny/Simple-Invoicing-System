@@ -87,7 +87,7 @@ namespace AnyStore.UI
                     {
                         id = int.Parse(dr["id"].ToString()),
                         invoice_no = decimal.Parse(dr["invoice_no"].ToString()),
-                        type = dr["grandTotal"].ToString(),
+                        type = dr["type"].ToString(),
                         dea_cust_id = int.Parse(dr["dea_cust_id"].ToString()),
                         grandTotal = decimal.Parse(dr["grandTotal"].ToString()),
                         transaction_date = DateTime.Parse(dr["transaction_date"].ToString()),

@@ -19,7 +19,7 @@ namespace AnyStore
         }
 
         //Set a public static method to specify whether the form is purchase or sales
-        public static string transactionType;
+        //public static string transactionType;
         private void frmUserDashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmLogin login = new frmLogin();
@@ -50,17 +50,18 @@ namespace AnyStore
         private void purchaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //set value on transactionType static method
-            transactionType = "Purchase";
+            //transactionType = "Purchase";
             frmPurchaseAndSales purchase = new frmPurchaseAndSales();
+            purchase.type = "Purchase";
             purchase.Show();
-            
         }
 
         private void salesFormsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Set the value to transacionType method to sales
-            transactionType = "Sales";
+            //transactionType = "Sales";
             frmPurchaseAndSales sales = new frmPurchaseAndSales();
+            sales.type = "Sales";
             sales.ShowDialog();
             sales.transactionID = -1;
         }
